@@ -1,0 +1,42 @@
+<aside>
+    <div class="panel-primary panel">
+        <div class="panel-heading"><h4 class="panel-title">GIROS</h4></div>
+    </div>
+    <div class="panel panel-body">
+        <form class="form-inline form-group">                    
+            <label>Filtrar por: </label>
+            <div class="btn-group">
+                <span class="label label-primary" style="padding: 5px;">Giro</span>
+            </div>
+            <div class="form-group">
+                <select name="giro" class="form-control">
+                    <option value="">Seleccione...</option>
+                </select>
+            </div>
+            <div style="text-align: right" class="form-group">
+                <input type="button" value="Buscar" class="btn btn-danger"/>
+            </div>
+        </form>
+    </div>
+    <div style="box-shadow: 1px 0px 5px 1px #cccccc;" class="panel panel-body">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">Tipo Modalidad de crédito</th>
+                    <th class="text-center">Descripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+           
+        </table>
+        <p class="text-right" style="margin-top: 20px;">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">Ingresar nuevo giro</button>
+        </p>
+         <!--Modal que contiene el formulario de añadir-->
+        <?php echo $this->action('creartipomodalidad', 'TipoModalidad', 'TipoModalidad'); ?>
+        <!---------------------------------------------->
+    </div>
+</aside>
