@@ -1,20 +1,31 @@
 <?php
-  $auth = Zend_Auth::getInstance();
-  $authStorage=$auth->getIdentity();
+$auth = Zend_Auth::getInstance();
+$authStorage = $auth->getIdentity();
 ?>
-<div class="container-fluid">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header" style='width:30%'>
+<!-- El logotipo y el icono que despliega el menú se agrupan
+     para mostrarlos mejor en los dispositivos móviles -->
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">SISBIUD - ICETEX</a>
+</div>
 
-    <p class="navbar-brand" href="#">SISBIUD ICETEX<p>
-  </div>
+<!-- Agrupar los enlaces de navegación, los formularios y cualquier
+     otro elemento que se pueda ocultar al minimizar la barra -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+        <li><a href="#" class="navbar-link">Bienvenido <?php echo $authStorage->nombre_real . " " . $authStorage->apellido_real; ?></a></li>
+        <li><a>Perfil: <?php echo $authStorage->perfil; ?></a></li>
+        
+        <li><a>Estado: <?php echo $authStorage->estado; ?></a></li>
+      
+    </ul>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div id="bs-example-navbar-collapse-1">
-      <p class="navbar-text" style="text-align:right;width: 39%">Perfil: <?php echo $authStorage->perfil; ?></p>
-    <p class="navbar-text" style='text-align:right;width:15%'>¡Hola <a href="#" class="navbar-link"><?php echo $authStorage->nombre_real . " " . $authStorage->apellido_real; ?>!</a></p>
-    <div class='navbar-form navbar-right'>
-      <a class='btn btn-primary btn-sm' href='<?php echo $this->url(array('module'=>'Index', 'controller'=>'Index','action'=>'logout')); ?>'>Cerrar Sesion</a>
-    </div>
-  </div><!-- /.container-fluid -->
+    <ul class="nav navbar-nav navbar-right">
+        <a class="btn btn-primary btn-sm navbar-btn" href='<?php echo $this->url(array('module' => 'Index', 'controller' => 'Index', 'action' => 'logout')); ?>'>Cerrar Sesión</a>
+    </ul>
 </div>
