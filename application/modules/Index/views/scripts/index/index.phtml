@@ -1,13 +1,29 @@
 <form class="form-signin" method="<?php echo $this->formLogin->getMethod(); ?>">
   <div class="panel panel-primary">
-    <?php echo $this->errorMessage;?>
     <div class="panel-header">
-      <center><h2>ACCESO</h2></center>
+        <center><h2>ACCESO</h2></center>
     </div>
     <div class="panel-body">
-  <div class="form-group"><?php echo $this->formLogin->getElement('usuario'); ?></div>
-  <div class="form-group"><?php echo $this->formLogin->getElement('contrasenia'); ?></div>
-  <div class="form-group"><?php echo $this->formLogin->getElement('submit'); ?></div>
+        <div class="form-group"><?php echo $this->formLogin->getElement('usuario'); ?></div>
+        <div class="form-group"><?php echo $this->formLogin->getElement('contrasenia'); ?></div>
+        <div class="form-group"><?php echo $this->formLogin->getElement('submit'); ?></div>
     </div>
+     <?php 
+        if(!empty($this->errorMessage)){
+        echo "<div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span>".$this->errorMessage."</div>";
+        echo "<script>$('#popup').bPopup();</script>";}
+     ?>
   </div>
 </form>
+<script>
+     $(function(){
+				    $(".form-signin").click(function(){
+				      if( validatrix() ){
+				        alert("Submit Form");
+				      }else{
+				        console.log("Some fields are required");
+				      }
+				      return false; //Prevent form submition
+				    });
+				  });
+</script>

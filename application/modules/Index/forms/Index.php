@@ -16,15 +16,17 @@ class Index_Form_Index extends Zend_Form
                 //->addValidator('Alpha')//advierte valores solo alfabeticos
                 ->setRequired(true)
                 ->setAttrib('placeholder', 'Usuario')
-                ->setAttrib('class', 'form-control');
-
+                ->setAttrib('class', 'form-control required');
+                
         $contrasenia = new Zend_Form_Element_Password('contrasenia');
         $contrasenia//->setLabel('Contraseña:')
                 ->addFilter('StringTrim')
                 //->addValidator('Alnum')//Adverte que texto tiene espacios
                 ->setRequired(true)
                 ->setAttrib('placeholder', 'Contraseña')
-                ->setAttrib('class', 'form-control');
+                ->setAttrib('class', 'form-control required');
+               
+                
         
         $submit=new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('class', 'btn btn-lg btn-primary btn-block')
