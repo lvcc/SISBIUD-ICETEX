@@ -16,7 +16,7 @@ class Index_Form_Index extends Zend_Form
                 //->addValidator('Alpha')//advierte valores solo alfabeticos
                 ->setRequired(true)
                 ->setAttrib('placeholder', 'Usuario')
-                ->setAttrib('class', 'form-control required');
+                ->setAttrib('class', 'form-control');
                 
         $contrasenia = new Zend_Form_Element_Password('contrasenia');
         $contrasenia//->setLabel('Contraseña:')
@@ -24,7 +24,7 @@ class Index_Form_Index extends Zend_Form
                 //->addValidator('Alnum')//Adverte que texto tiene espacios
                 ->setRequired(true)
                 ->setAttrib('placeholder', 'Contraseña')
-                ->setAttrib('class', 'form-control required');
+                ->setAttrib('class', 'form-control');
                
                 
         
