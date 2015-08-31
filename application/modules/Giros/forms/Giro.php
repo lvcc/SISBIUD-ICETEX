@@ -8,26 +8,23 @@ class Giros_Form_Giro extends Zend_Form
         $this->setName('giro');
         
         $resolucion=new Zend_Form_Element_Text('id_resolucion');
-        $resolucion->setRequired(true);
+        $resolucion->setAttrib("required", "required")
+                ->setAttrib("class", "form-control");
         
         $fecha=new Zend_Form_Element_Text('fecha_giro');
-        $fecha->setRequired(true);
+        $fecha->setAttrib("required", "required")
+                ->setAttrib("class", "form-control")
+                ->setAttrib('id', 'sandbox-container');
         
         $valortotal=new Zend_Form_Element_Text('valor_total');
-        $valortotal->setRequired(true);
+        $valortotal->setAttrib("required", "required")
+                ->setAttrib("class", "form-control");
         
-        $codigo=new Zend_Form_Element_Text("cod_estudiante");
-        $codigo->setRequired(TRUE);
-        
-        $valorestudiante=new Zend_Form_Element_Text('valor_girado_estudiante');
-        $valorestudiante->setRequired(TRUE);
         $submit=new Zend_Form_Element_Submit('insertar');
-        $submit->setLabel('Ingresar Giro');
+        $submit->setLabel('Ingresar Giro')
+                ->setAttrib('class', 'btn btn-primary');
         
-        $this->addElements(array($resolucion,$fecha,$valortotal,$codigo,$valorestudiante,$submit));
+        $this->addElements(array($resolucion,$fecha,$valortotal,$submit));
         $this->setElementDecorators(array('ViewHelper','Errors'));
     }
-
-
 }
-

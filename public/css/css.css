@@ -12,3 +12,10 @@ footer
       height: 300px;
       padding: 30px;
  }
+.formulariogiro
+{
+    float: left;
+    width: 31%;
+    margin: 1%;
+    text-align: left;
+}
