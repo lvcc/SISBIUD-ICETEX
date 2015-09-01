@@ -1,3 +1,18 @@
+<?php
+
+/*function fechaMysql($fecha)
+    {
+        $arr = split("-", $fecha);
+        if (count($arr) != 3)
+        {
+            return $fecha;
+        } else
+        {
+            return "$arr[2]-$arr[1]-$arr[0]";
+        }
+    }*/
+
+?>
 <aside>
     <div class="panel-primary panel">
         <div class="panel-heading"><h4 class="panel-title">GIROS</h4></div>
@@ -31,9 +46,10 @@
             <tbody>
                 <?php foreach ($this->mostrar as $m) : ?>
                     <tr>
-                        <?php $idmod = $mod->cod_modalidad_credito; ?>
+                        <?php //$idmod = $mod->cod_modalidad_credito; ?>
                         <td ><?php echo $this->escape($m->id_resolucion); ?></td>
                         <td><?php echo $this->escape($m->fecha_giro); ?></td>
+                        <!--<td><?php //echo $this->escape(fechaMysql($m->fecha_giro)); ?></td>-->
                         <td><?php echo $this->escape($m->valor_total); ?></td>
                         <td>
                             <div class="btn-group">

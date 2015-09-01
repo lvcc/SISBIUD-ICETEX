@@ -38,6 +38,8 @@ class Giros_GiroController extends Zend_Controller_Action
                     $fecha=$formgiro->getValue('fecha_giro');
                     $valortotal=$formgiro->getValue('valor_total');
                     
+                    $fecha=  $this->fechaMysql($fecha);
+                    var_dump($fecha);
                     $consulta=new Giros_Model_DbTable_Resolucion();
                     $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
                     $this->_helper->redirector('index');
@@ -52,7 +54,17 @@ class Giros_GiroController extends Zend_Controller_Action
             $this->_redirect('Index/index');
         }
     }
-
+     public function fechaMysql($fecha)
+    {
+        $arr = split("/", $fecha);
+        if (count($arr) != 3)
+        {
+            return $fecha;
+        } else
+        {
+            return "$arr[2]-$arr[1]-$arr[0]";
+        }
+    }
 
 }
 
