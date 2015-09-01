@@ -41,7 +41,9 @@ class Giros_GiroController extends Zend_Controller_Action
                     $fecha=  $this->fechaMysql($fecha);
                     var_dump($fecha);
                     $consulta=new Giros_Model_DbTable_Resolucion();
+                    $consulta2=new Giros_Model_DbTable_GiroEstudiante();  
                     $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                    $consulta2->insertarResolucionEstudiante($resolucion, $codigo, $valor);
                     $this->_helper->redirector('index');
                 }
                 else
