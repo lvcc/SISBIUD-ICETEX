@@ -18,22 +18,13 @@ class Giros_Form_Giro extends Zend_Form
         
         $valortotal=new Zend_Form_Element_Text('valor_total');
         $valortotal->setAttrib("required", "required")
-                ->setAttrib("class", "form-control");
-        
-        $codigoest=new Zend_Form_Element_Text('cod_estudiannte');
-        $codigoest->setAttrib("required", "required")
-                ->setAttrib("class", "form-control");
-        
-        $valorunitario=new Zend_Form_Element_Text('valor_girado_estudiannte');
-        $valorunitario->setAttrib("required", "required")
-                ->setAttrib("class", "form-control");
-        
+                ->setAttrib("class", "form-control");        
                
         $submit=new Zend_Form_Element_Submit('insertar');
         $submit->setLabel('Ingresar Giro')
                 ->setAttrib('class', 'btn btn-primary');
         
-        $this->addElements(array($resolucion,$fecha,$valortotal,$codigoest,$valorunitario,$submit));
+        $this->addElements(array($resolucion,$fecha,$valortotal,$valorunitario,$submit));
         $this->setElementDecorators(array('ViewHelper','Errors'));
     }
 }

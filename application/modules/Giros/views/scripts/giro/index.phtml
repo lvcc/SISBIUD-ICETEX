@@ -77,6 +77,7 @@
         </table>
         <p class="text-right" style="margin-top: 20px;">
             <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">Ingresar nuevo giro</button>
+            <a href="<?php echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'creargiro2')); ?>">Añadir recargando</a>
         </p>
          <!--Modal que contiene el formulario de añadir-->
         <?php echo $this->action('creargiro', 'Giro', 'Giros'); ?>

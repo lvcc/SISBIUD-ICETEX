@@ -39,12 +39,13 @@ class Giros_GiroController extends Zend_Controller_Action
                     $valortotal=$formgiro->getValue('valor_total');
                     
                     $fecha=  $this->fechaMysql($fecha);
-                    var_dump($fecha);
-                    $consulta=new Giros_Model_DbTable_Resolucion();
-                    $consulta2=new Giros_Model_DbTable_GiroEstudiante();  
-                    $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
-                    $consulta2->insertarResolucionEstudiante($resolucion, $codigo, $valor);
-                    $this->_helper->redirector('index');
+                    $codigo2=  $this->_request->getPost("cod_estudiante");
+                    var_dump($codigo2);
+                    ///$consulta=new Giros_Model_DbTable_Resolucion();
+                    //$consulta2=new Giros_Model_DbTable_GiroEstudiante();  
+                    ///$consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                    //$consulta2->insertarResolucionEstudiante($resolucion, $codigo, $valor);
+                    //$this->_helper->redirector('index');
                 }
                 else
                 {
@@ -56,7 +57,8 @@ class Giros_GiroController extends Zend_Controller_Action
             $this->_redirect('Index/index');
         }
     }
-     public function fechaMysql($fecha)
+
+    public function fechaMysql($fecha)
     {
         $arr = split("/", $fecha);
         if (count($arr) != 3)
@@ -68,7 +70,51 @@ class Giros_GiroController extends Zend_Controller_Action
         }
     }
 
+    public function creargiro2Action()
+    {
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            $formgiro=new Giros_Form_Giro();
+            $this->view->add=$formgiro;
+            //$formadd->submit->setLabel('Insertar Modalidad');
+            if($this->getRequest()->isPost())
+            {
+                $formData=  $this->getRequest()->getPost();
+                if($formgiro->isValid($formData))
+                {
+                    $resolucion=$formgiro->getValue('id_resolucion');
+                    $fecha=$formgiro->getValue('fecha_giro');
+                    $valortotal=$formgiro->getValue('valor_total');
+                    //$codigo=$formgiro->getValue("cod_estudiante");
+                    //$codigo2=  $this->_request->getPost("cod_estudiante");
+                    //$valor=$formgiro->getValue("valor_girado_estudiante");
+                    var_dump($valor);
+                    var_dump($codigo);
+                    var_dump($codigo2);
+                    
+                    $fecha=  $this->fechaMysql($fecha);
+                    $consulta=new Giros_Model_DbTable_Resolucion();
+                    //$consulta2=new Giros_Model_DbTable_GiroEstudiante();  
+                    $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                    //$consulta2->insertarResolucionEstudiante($resolucion, $codigo, $valor);
+                    //var_dump($consulta); mejor en el modelo
+                    //$this->_helper->redirector('index');
+                }
+                else
+                {
+                    $formgiro->populate($formData);
+                }
+            }
+        }else 
+        {
+            $this->_redirect('Index/index');
+        }
+    }
+
+
 }
+
+
 
 
 

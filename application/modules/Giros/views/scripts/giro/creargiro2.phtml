@@ -1,0 +1,78 @@
+<aside>
+    <div style="box-shadow: 1px 0px 5px 1px #cccccc;" class="panel panel-body">
+        <form class="form-horizontal" role="form" method="post">
+            <div class="form-group">
+                <div class="formulariogiro">
+                    <label>Número de resolución:</label>
+                    <?php echo $this->add->getElement('id_resolucion'); ?>
+                </div>
+                <div class="formulariogiro">
+                    <label>Fecha:</label>
+                    <?php echo $this->add->getElement('fecha_giro'); ?>
+                </div>
+                <div class="formulariogiro">
+                    <label>Valor total:</label>
+                    <?php echo $this->add->getElement('valor_total'); ?>
+                </div>
+
+                <div id="cont">
+                    <div class="added" style=" clear: both; overflow: hidden;">
+                        <div class="formulariogiro">
+                            <label>Código estudiante:</label>
+                            <input type="text" name="cod_estudiante" class="form-control" id="campo_1" placeholder="Codigo 1">
+                        </div>
+                        <div class="formulariogiro" >
+                            <label>Valor girado:</label>
+                            <input type="text" name="valor_girado_estudiante" class="form-control" id="camp_1" placeholder="Valor 1">
+                        </div>
+
+                        <a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a>
+                    </div>
+                </div>
+                <div class="formulariogiro">
+                    <a id="agregarCampo" class="btn btn-danger" href="#">Agregar Estudiante</a>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div align="right">
+                    <?php echo $this->add->getElement('insertar'); ?>
+                    <button type="button" class="btn btn-default">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</aside>
+<script type="text/javascript">
+    $('#sandbox-container').datepicker({
+    });
+    $(document).ready(function() {
+
+        var MaxInputs = 200; //Número Maximo de Campos
+        var cont = $("#cont"); //ID del cont
+        var AddButton = $("#agregarCampo"); //ID del Botón Agregar
+
+        //var x = número de campos existentes en el cont
+        var x = $(".added").length + 1;
+        var FieldCount = x - 1; //para el seguimiento de los campos
+
+        $(AddButton).click(function(e) {
+            if (x <= MaxInputs) //max input box allowed
+            {
+                FieldCount++;
+                //agregar campo
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_estudiante" id="campo_' + FieldCount + '" placeholder="Codigo ' + FieldCount + '" class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="valor_girado_estudiante" id="camp_' + FieldCount + '" placeholder="Valor ' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                x++; //text box increment
+            }
+            return false;
+        });
+
+        $("body").on("click", ".eliminar", function(e) { //click en eliminar campo
+            if (x > 1) {
+                $(this).parent('div').remove(); //eliminar el campo
+                x--;
+            }
+            return false;
+        });
+    });
+</script>
