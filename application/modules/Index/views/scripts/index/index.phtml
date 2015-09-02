@@ -8,22 +8,29 @@
         <div class="form-group"><?php echo $this->formLogin->getElement('contrasenia'); ?></div>
         <div class="form-group"><?php echo $this->formLogin->getElement('submit'); ?></div>
     </div>
+      <div id ='popup' class ='modal-body' style ='display:none'><span class='button b-close'><span>X</span></span><?php echo $this->errorMessage; ?></div>
      <?php 
         if(!empty($this->errorMessage)){
-        echo "<div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span>".$this->errorMessage."</div>";
-        echo "<script>$('#popup').bPopup();</script>";}
+        echo "<div id ='popup' class ='modal-body' style ='display:none'><span class='button b-close'><span>X</span></span>".$this->errorMessage."</div>";
+        echo "<script>$('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});</script>";}
      ?>
   </div>
 </form>
 <script>
-     $(function(){
-				    $(".form-signin").click(function(){
-				      if( validatrix() ){
-				        alert("Submit Form");
-				      }else{
-				        console.log("Some fields are required");
-				      }
-				      return false; //Prevent form submition
-				    });
-				  });
+     $('.form-signin').submit(function(event){        
+        var msj="";
+        $('.required').each(function () {
+            if(!$(this).val())
+                {
+                  msj += " El campo "+$(this).attr('name')+' es requerido<br>'; 
+                }            
+        });
+        if(!!msj)
+        {
+         event.preventDefault();
+          $('#popup').html('<span class="button b-close"><span>X</span></span>'+msj);
+          $('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+          msj="";
+        }                    
+     });
 </script>

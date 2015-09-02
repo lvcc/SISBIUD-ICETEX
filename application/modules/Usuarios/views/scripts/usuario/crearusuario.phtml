@@ -65,8 +65,27 @@
                         </div>
                     </div>
                 </form>
+                <div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span></div>
             </div>
 
         </div>
     </div>
 </div>
+<script>
+     $('.form-signin').submit(function(event){        
+        var msj="";
+        $('.required').each(function () {
+            if(!$(this).val())
+                {
+                  msj += " El campo "+$(this).attr('name')+' es requerido<br>'; 
+                }            
+        });
+        if(!!msj)
+        {
+         event.preventDefault();
+          $('#popup').html('<span class="button b-close"><span>X</span></span>'+msj);
+          $('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+          msj="";
+        }                    
+     });
+</script>

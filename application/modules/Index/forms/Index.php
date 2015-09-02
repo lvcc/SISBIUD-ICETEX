@@ -14,17 +14,17 @@ class Index_Form_Index extends Zend_Form
                 ->addFilter('StringTrim')// Quita los espacios izqu o derecha
                 //->addFilter('StringToLower')//Convierte el texto minuscula
                 //->addValidator('Alpha')//advierte valores solo alfabeticos
-                ->setRequired(true)
+                //->setRequired(true)
                 ->setAttrib('placeholder', 'Usuario')
-                ->setAttrib('class', 'form-control');
+                ->setAttrib('class', 'form-control required');
                 
         $contrasenia = new Zend_Form_Element_Password('contrasenia');
         $contrasenia//->setLabel('Contraseña:')
                 ->addFilter('StringTrim')
                 //->addValidator('Alnum')//Adverte que texto tiene espacios
-                ->setRequired(true)
+                //->setRequired(true)
                 ->setAttrib('placeholder', 'Contraseña')
-                ->setAttrib('class', 'form-control');
+                ->setAttrib('class', 'form-control required');
                
                 
         
