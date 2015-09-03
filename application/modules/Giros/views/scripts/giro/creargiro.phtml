@@ -28,11 +28,11 @@
                             <div class="added" style=" clear: both; overflow: hidden;">
                                 <div class="formulariogiro">
                                     <label>Código estudiante:</label>
-                                    <input type="text" name="cod_estudiante" class="form-control" id="campo_1" placeholder="Codigo 1">
+                                    <input type="text" name="cod_estudiante_1" class="form-control" id="campo_1" placeholder="Codigo 1">
                                 </div>
                                 <div class="formulariogiro" >
                                     <label>Valor girado:</label>
-                                    <input type="text" name="valor_girado_estudiante" class="form-control" id="camp_1" placeholder="Valor 1">
+                                    <input type="text" name="valor_girado_estudiante_1" class="form-control" id="camp_1" placeholder="Valor 1">
                                 </div>
 
                                 <a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a>
@@ -73,7 +73,7 @@
             {
                 FieldCount++;
                 //agregar campo
-                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_estudiante" id="campo_' + FieldCount + '" placeholder="Codigo ' + FieldCount + '" class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="valor_girado_estudiante" id="camp_' + FieldCount + '" placeholder="Valor ' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_estudiante_'+FieldCount+'" id="campo_' + FieldCount + '" placeholder="Codigo ' + FieldCount + '" class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="valor_girado_estudiante_' + FieldCount + '" id="camp_' + FieldCount + '" placeholder="Valor ' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
                 x++; //text box increment
             }
             return false;

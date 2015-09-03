@@ -39,8 +39,8 @@ class Giros_GiroController extends Zend_Controller_Action
                     $valortotal=$formgiro->getValue('valor_total');
                     
                     $fecha=  $this->fechaMysql($fecha);
-                    $codigo2=  $this->_request->getPost("cod_estudiante");
-                    var_dump($codigo2);
+                    //$codigo2=  $this->_request->getPost("cod_estudiante");
+                    var_dump($_POST);
                     ///$consulta=new Giros_Model_DbTable_Resolucion();
                     //$consulta2=new Giros_Model_DbTable_GiroEstudiante();  
                     ///$consulta->insertarResolucion($resolucion, $fecha, $valortotal);
@@ -88,9 +88,7 @@ class Giros_GiroController extends Zend_Controller_Action
                     //$codigo=$formgiro->getValue("cod_estudiante");
                     //$codigo2=  $this->_request->getPost("cod_estudiante");
                     //$valor=$formgiro->getValue("valor_girado_estudiante");
-                    var_dump($valor);
-                    var_dump($codigo);
-                    var_dump($codigo2);
+                    var_dump($_POST);
                     
                     $fecha=  $this->fechaMysql($fecha);
                     $consulta=new Giros_Model_DbTable_Resolucion();
