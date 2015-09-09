@@ -1,7 +1,17 @@
 <?php
 
-class ErrorController extends Zend_Controller_Action
+class Giros_ErrorController extends Zend_Controller_Action
 {
+
+    public function init()
+    {
+        /* Initialize action controller here */
+    }
+
+    public function indexAction()
+    {
+        // action body
+    }
 
     public function errorAction()
     {
@@ -52,7 +62,7 @@ class ErrorController extends Zend_Controller_Action
         $log = $bootstrap->getResource('Log');
         return $log;
     }
-
-
 }
+
+
 
