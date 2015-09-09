@@ -24,7 +24,7 @@ class Giros_Form_Giro extends Zend_Form
         $submit->setLabel('Ingresar Giro')
                 ->setAttrib('class', 'btn btn-primary');
         
-        $this->addElements(array($resolucion,$fecha,$valortotal,$valorunitario,$submit));
+        $this->addElements(array($resolucion,$fecha,$valortotal,$submit));
         $this->setElementDecorators(array('ViewHelper','Errors'));
     }
 }

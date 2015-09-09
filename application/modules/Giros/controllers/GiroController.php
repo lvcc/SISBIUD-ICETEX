@@ -85,17 +85,17 @@ class Giros_GiroController extends Zend_Controller_Action
                     $resolucion=$formgiro->getValue('id_resolucion');
                     $fecha=$formgiro->getValue('fecha_giro');
                     $valortotal=$formgiro->getValue('valor_total');
-                    //$codigo=$formgiro->getValue("cod_estudiante");
-                    //$codigo2=  $this->_request->getPost("cod_estudiante");
-                    //$valor=$formgiro->getValue("valor_girado_estudiante");
+                    
+                    $codigo2=  $this->_request->getPost("cod_estudiante_1");
+                    $valor=$this->_request->getPost("valor_girado_estudiante_1");
                     var_dump($_POST);
                     
                     $fecha=  $this->fechaMysql($fecha);
-                    $consulta=new Giros_Model_DbTable_Resolucion();
-                    //$consulta2=new Giros_Model_DbTable_GiroEstudiante();  
-                    $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
-                    //$consulta2->insertarResolucionEstudiante($resolucion, $codigo, $valor);
-                    //var_dump($consulta); mejor en el modelo
+                    //$consulta=new Giros_Model_DbTable_Resolucion();
+                    $consulta2=new Giros_Model_DbTable_GiroEstudiante();  
+                    //$consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                    $consulta2->insertar($resolucion, $codigo2, $valor);
+                    
                     //$this->_helper->redirector('index');
                 }
                 else
