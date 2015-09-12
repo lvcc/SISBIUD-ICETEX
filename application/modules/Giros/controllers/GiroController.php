@@ -38,14 +38,17 @@ class Giros_GiroController extends Zend_Controller_Action
                     $fecha=$formgiro->getValue('fecha_giro');
                     $valortotal=$formgiro->getValue('valor_total');
                     
+                    $codigo2=  $this->_request->getPost("cod_estudiante_1");
+                    $valor=$this->_request->getPost("valor_girado_estudiante_1");
+                    //var_dump($_POST);
+                    
                     $fecha=  $this->fechaMysql($fecha);
-                    //$codigo2=  $this->_request->getPost("cod_estudiante");
-                    var_dump($_POST);
-                    ///$consulta=new Giros_Model_DbTable_Resolucion();
-                    //$consulta2=new Giros_Model_DbTable_GiroEstudiante();  
-                    ///$consulta->insertarResolucion($resolucion, $fecha, $valortotal);
-                    //$consulta2->insertarResolucionEstudiante($resolucion, $codigo, $valor);
-                    //$this->_helper->redirector('index');
+                    $consulta=new Giros_Model_DbTable_Resolucion();
+                    $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                    
+                    $consulta2=new Giros_Model_DbTable_GiroEstudiante();  
+                    $consulta2->insertar($resolucion, $codigo2, $valor);
+                    $this->_helper->redirector('index');
                 }
                 else
                 {
@@ -88,15 +91,16 @@ class Giros_GiroController extends Zend_Controller_Action
                     
                     $codigo2=  $this->_request->getPost("cod_estudiante_1");
                     $valor=$this->_request->getPost("valor_girado_estudiante_1");
-                    var_dump($_POST);
+                    //var_dump($_POST);
                     
                     $fecha=  $this->fechaMysql($fecha);
-                    //$consulta=new Giros_Model_DbTable_Resolucion();
+                    $consulta=new Giros_Model_DbTable_Resolucion();
+                    $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                    
                     $consulta2=new Giros_Model_DbTable_GiroEstudiante();  
-                    //$consulta->insertarResolucion($resolucion, $fecha, $valortotal);
                     $consulta2->insertar($resolucion, $codigo2, $valor);
                     
-                    //$this->_helper->redirector('index');
+                    $this->_helper->redirector('index');
                 }
                 else
                 {
