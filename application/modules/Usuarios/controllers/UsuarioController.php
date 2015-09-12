@@ -122,8 +122,15 @@ class Usuarios_UsuarioController extends Zend_Controller_Action
         // action body
     }
 
+    public function disponibleAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 
