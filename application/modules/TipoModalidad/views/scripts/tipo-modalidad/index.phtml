@@ -44,27 +44,6 @@
     <div class="panel-primary panel">
         <div class="panel-heading"><h4 class="panel-title">TIPO DE MODALIDAD DE CRÉDITO</h4></div>
     </div>
-    <div class="panel panel-body">
-        <form class="form-inline form-group">                    
-            <label>Filtrar por: </label>
-            <div class="btn-group">
-                <span class="label label-primary" style="padding: 5px;">Tipo Modalidad de crédito</span>
-            </div>
-            <div class="form-group">
-                <select name="tipomodalidad" class="form-control">
-                    <option value="">Seleccione...</option>
-                    <?php foreach ($this->listar as $d) : ?>
-                        <option value="<?php echo $d->cod_tipo_modalidad_credito; ?>">
-                            <?php echo $d->nombre_tipo_modalidad; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div style="text-align: right" class="form-group">
-                <input type="button" value="Buscar" class="btn btn-danger"/>
-            </div>
-        </form>
-    </div>
 
     <div style="box-shadow: 1px 0px 5px 1px #cccccc;" class="panel panel-body">
         <table id="tiposmodalidad" class="table table-striped table-bordered table-hover">
