@@ -21,6 +21,16 @@ class Usuarios_Model_DbTable_Usuario extends Zend_Db_Table_Abstract
     {
         return $this->fetchAll();
     }
+    public function validardisponibilidad($usuario,$tabla,$columna)
+    {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        $select = Zend_Db_Table::getDefaultAdapter()->select();
+        $select->from($tabla,array('count' => 'count(*)'));
+        $select->where($columna.' = ?',$usuario);
+        $result = Zend_Db_Table::getDefaultAdapter()->fetchRow($select);
+        $disponibilidad = $result['count'];
+        return $disponibilidad;
+    }
     
     function crearUsuario($nombreUsuario,$contrasena,$id,$nombre,$apellido,$cargo,$perfil,$estado)
     {

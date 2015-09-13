@@ -14,7 +14,7 @@ class Usuarios_Form_Usuarios extends Zend_Form
                 ->addFilter('StripTags')
                 ->addFilter('StringTrim')
                 //->addValidator('NotEmpty')
-                ->setAttrib('class', 'form-control required');
+                ->setAttrib('class', 'form-control required unico');
         
         $contrasena=new Zend_Form_Element_Password('contrasena');
         $contrasena
@@ -28,7 +28,7 @@ class Usuarios_Form_Usuarios extends Zend_Form
         $identificacion
                 //->setRequired(true)
                 ->addFilter('StripTags')
-                ->setAttrib('class', 'form-control required');
+                ->setAttrib('class', 'form-control required unico');
         
         $nombre=new Zend_Form_Element_Text('nombre_real');
         $nombre

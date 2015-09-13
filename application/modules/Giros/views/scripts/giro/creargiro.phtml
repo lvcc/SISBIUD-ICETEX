@@ -9,11 +9,12 @@
             </div>
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
-                <form class="form-horizontal" role="form" method="post">
+                <form id = "resolucion_form"class="form-horizontal" role="form" method="post">
                     <div class="form-group">
                         <div class="formulariogiro">
                             <label>Número de resolución:</label>
                             <?php echo $this->add->getElement('id_resolucion'); ?>
+                            <div id="id_resolucion_aviso"></div>
                         </div>
                         <div class="formulariogiro">
                             <label>Fecha:</label>
@@ -86,5 +87,22 @@
             }
             return false;
         });
+    });
+</script>
+<script>
+    var tabla = (($('form').attr('id')).split("_"))[0]; 
+    $('input').keyup(function(e){
+            if($(this).hasClass('unico'))
+            {
+                var nombre_usuario = $(this).val();
+                var columna = $(this).attr('id');
+                $.post('usuario/disponible', {'nombre_usuario':nombre_usuario, 'tabla':tabla, 'columna':columna}, function(data) {
+                $('#'+columna+'_aviso').html(data);
+                });
+            }
+            if($('.error').length>0)
+                $('#submit').prop('disabled',true);
+            else
+                $('#submit').prop('disabled',false);
     });
 </script>

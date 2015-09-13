@@ -9,7 +9,7 @@ class Giros_Form_Giro extends Zend_Form
         
         $resolucion=new Zend_Form_Element_Text('id_resolucion');
         $resolucion->setAttrib("required", "required")
-                ->setAttrib("class", "form-control");
+                ->setAttrib("class", "form-control unico");
         
         $fecha=new Zend_Form_Element_Text('fecha_giro');
         $fecha->setAttrib("required", "required")
