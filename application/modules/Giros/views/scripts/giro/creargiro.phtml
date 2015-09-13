@@ -29,13 +29,24 @@
                             <div class="added" style=" clear: both; overflow: hidden;">
                                 <div class="formulariogiro">
                                     <label>Código estudiante:</label>
-                                    <input type="text" name="cod_estudiante_1" class="form-control" id="campo_1" placeholder="Codigo 1">
+                                    <input type="text" name="cod_es_1" class="form-control estudiante_codigo" id="cod_es_1">
+                                </div>
+                                <div class="formulariogiro">
+                                    <label>Nombre:</label>
+                                    <input type="text" name="nom_es_1" class ="form-control" id ="nom_es_1">
+                                </div>
+                                <div class="formulariogiro">
+                                    <label>Carrera:</label>
+                                    <input type="text" name="carr_es_1" class ="form-control" id ="carr_es_1">
+                                </div>
+                                <div class="formulariogiro">
+                                    <label>eMail:</label>
+                                    <input type="text" name="ema_es_1" class ="form-control" id ="ema_es_1">
                                 </div>
                                 <div class="formulariogiro" >
                                     <label>Valor girado:</label>
-                                    <input type="text" name="valor_girado_estudiante_1" class="form-control" id="camp_1" placeholder="Valor 1">
+                                    <input type="text" name="val_es_1" class="form-control estudiantes_valor_girado" id="val_es_1">
                                 </div>
-
                                 <a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a>
                             </div>
                         </div>
@@ -74,7 +85,7 @@
             {
                 FieldCount++;
                 //agregar campo
-                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_estudiante_'+FieldCount+'" id="campo_' + FieldCount + '" placeholder="Codigo ' + FieldCount + '" class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="valor_girado_estudiante_' + FieldCount + '" id="camp_' + FieldCount + '" placeholder="Valor ' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="caarr_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
                 x++; //text box increment
             }
             return false;
@@ -96,7 +107,7 @@
             {
                 var nombre_usuario = $(this).val();
                 var columna = $(this).attr('id');
-                $.post('usuario/disponible', {'nombre_usuario':nombre_usuario, 'tabla':tabla, 'columna':columna}, function(data) {
+                $.post('giro/disponible', {'nombre_usuario':nombre_usuario, 'tabla':tabla, 'columna':columna}, function(data) {
                 $('#'+columna+'_aviso').html(data);
                 });
             }
@@ -106,3 +117,33 @@
                 $('#submit').prop('disabled',false);
     });
 </script>
+<script>
+        $('.modal-header').click(function(e){
+           var codigos = [];
+            $('.estudiante_codigo').each(function(i,val){
+               codigos.push($(this).val());
+               $(this).removeClass('duplicado');
+           });
+           $.each(codigos,function(i,valor){
+               var duplicados = 0;
+               $.each(codigos,function(j,valor2){
+                   if(valor===valor2)
+                       duplicados++;
+               });
+               if(duplicados>1){
+                   $('.estudiante_codigo').each(function(k,val){
+                       if(k===i)
+                           $(this).addClass('duplicado');
+                       });
+               }
+               duplicados = 0;
+           });
+           e.preventDefault();
+        });       
+</script>
+<style>
+    .duplicado
+    {
+        background:red !important;
+    }
+</style>

@@ -115,7 +115,28 @@ class Giros_GiroController extends Zend_Controller_Action
 
     public function disponibleAction()
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            if($this->getRequest()->isPost())
+            {
+                $datos = $this->getRequest()->getPost();
+                $usuario=$datos['nombre_usuario'];
+                $tabla=$datos['tabla'];
+                $columna=$datos['columna'];
+                $table= new Giros_Model_DbTable_Resolucion();
+                $disponibilidad=$table->validardisponibilidad($usuario,$tabla,$columna);
+                if($disponibilidad>0)
+                {
+                    die("ya esta registrado en el sistema");
+                } else 
+                {
+                    die("Disponible");
+                }
+            }            
+        } else 
+        {
+            $this->_redirect('Index/index');
+        }
     }
 
 
