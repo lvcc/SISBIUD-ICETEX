@@ -38,16 +38,21 @@ class Giros_GiroController extends Zend_Controller_Action
                     $fecha=$formgiro->getValue('fecha_giro');
                     $valortotal=$formgiro->getValue('valor_total');
                     
-                    $codigo2=  $this->_request->getPost("cod_estudiante_1");
-                    $valor=$this->_request->getPost("valor_girado_estudiante_1");
-                    //var_dump($_POST);
-                    
+                    $codigo2=  $this->_request->getPost("cod_es_1");
+                    $valor=$this->_request->getPost("val_es_1");
+                            
                     $fecha=  $this->fechaMysql($fecha);
                     $consulta=new Giros_Model_DbTable_Resolucion();
                     $consulta->insertarResolucion($resolucion, $fecha, $valortotal);
+                   
+                    $consulta2=new Giros_Model_DbTable_GiroEstudiante();
+                    $consulta2->insertar($resolucion, $_POST);  
                     
-                    $consulta2=new Giros_Model_DbTable_GiroEstudiante();  
-                    $consulta2->insertar($resolucion, $codigo2, $valor);
+                    /*for($i=1;$i<=$this->_request->getPost("total_estudiantes");$i++)
+                    {
+                         
+                    }*/
+                                          
                     $this->_helper->redirector('index');
                 }
                 else
@@ -115,22 +120,38 @@ class Giros_GiroController extends Zend_Controller_Action
 
     public function disponibleAction()
     {
+        
         if (Zend_Auth::getInstance()->hasIdentity()) 
         {
+            
             if($this->getRequest()->isPost())
             {
+                
                 $datos = $this->getRequest()->getPost();
-                $usuario=$datos['nombre_usuario'];
+                $tabla=$datos['tabla'];
+                $tabla2=$datos['tabla2'];
+                if($tabla=='resolucion'){
+                $campo=$datos['resolucion'];
                 $tabla=$datos['tabla'];
                 $columna=$datos['columna'];
                 $table= new Giros_Model_DbTable_Resolucion();
-                $disponibilidad=$table->validardisponibilidad($usuario,$tabla,$columna);
+                $disponibilidad=$table->validardisponibilidad($campo,$tabla,$columna);
                 if($disponibilidad>0)
                 {
                     die("ya esta registrado en el sistema");
                 } else 
                 {
                     die("Disponible");
+                }
+                }
+                elseif($datos['estudiante_cod'])
+                {
+                $campo=$datos['campo'];
+                $tabla2=$datos['tabla2'];
+                $columna=$datos['estudiante_cod'];
+                $table2= new Giros_Model_DbTable_Beneficiarios();
+                $disponibilidad=$table2->validardisponibilidad($campo,$tabla2,$columna);
+                die($disponibilidad);
                 }
             }            
         } else 
@@ -141,7 +162,26 @@ class Giros_GiroController extends Zend_Controller_Action
 
     public function datosbeneficiarioAction()
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            if($this->getRequest()->isPost())
+            {
+                $datos = $this->getRequest()->getPost();
+                $campo=$datos['campo'];
+                $tabla=$datos['tabla'];
+                $columna=$datos['estudiante_cod'];
+                die("hola");
+                $table= new Giros_Model_DbTable_Beneficiarios();
+                $disponibilidad=$table->validardisponibilidad($campo,$tabla,$columna);
+                if($disponibilidad>0)
+                {
+                    die("ya esta registrado en el sistema");
+                }
+            }            
+        } else 
+        {
+            $this->_redirect('Index/index');
+        }
     }
 
 

@@ -10,6 +10,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 <form id = "resolucion_form"class="form-horizontal" role="form" method="post">
+                    <input type = "hidden" id = "total_estudiantes" name ="total_estudiantes">
                     <div class="form-group">
                         <div class="formulariogiro">
                             <label>Número de resolución:</label>
@@ -85,12 +86,13 @@
             {
                 FieldCount++;
                 //agregar campo
-                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="caarr_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
                 x++; //text box increment
+                 $('#total_estudiantes').val(FieldCount);
             }
             return false;
         });
-
+       
         $("body").on("click", ".eliminar", function(e) { //click en eliminar campo
             if (x > 1) {
                 $(this).parent('div').remove(); //eliminar el campo
@@ -105,9 +107,9 @@
     $('input').keyup(function(e){
             if($(this).hasClass('unico'))
             {
-                var nombre_usuario = $(this).val();
+                var resolucion = $(this).val();
                 var columna = $(this).attr('id');
-                $.post('giro/disponible', {'nombre_usuario':nombre_usuario, 'tabla':tabla, 'columna':columna}, function(data) {
+               $.post('giro/disponible', {'resolucion':resolucion, 'tabla':tabla, 'columna':columna}, function(data) {
                 $('#'+columna+'_aviso').html(data);
                 });
             }
@@ -115,8 +117,30 @@
                 $('#submit').prop('disabled',true);
             else
                 $('#submit').prop('disabled',false);
+    });    
+</script>
+
+<script>
+    var tabla2 = "beneficiarios";
+    $(document).on('keyup','.estudiante_codigo',function(e){
+        console.log("beneficiarios");
+          var pos = (($(this).attr('id')).split("_"))[2];
+          var estudiante_cod = $(this).val();
+          campo="Nombre";
+          $.post('giro/disponible', {'estudiante_cod':estudiante_cod, 'tabla2':tabla2, 'campo':campo}, function(data2) {
+                $('#nom_es_'+pos).val(data2);
+                });
+          campo="Carrera";
+          $.post('giro/disponible', {'estudiante_cod':estudiante_cod, 'tabla2':tabla2, 'campo':campo}, function(data) {
+                $('#carr_es_'+pos).val(data);
+                });
+          campo="Email";
+          $.post('giro/disponible', {'estudiante_cod':estudiante_cod, 'tabla2':tabla2, 'campo':campo}, function(data) {
+                $('#ema_es_'+pos).val(data);
+                });
     });
 </script>
+
 <script>
         $('.modal-header').click(function(e){
            var codigos = [];
