@@ -47,11 +47,6 @@ class Giros_GiroController extends Zend_Controller_Action
                    
                     $consulta2=new Giros_Model_DbTable_GiroEstudiante();
                     $consulta2->insertar($resolucion, $_POST);  
-                    
-                    /*for($i=1;$i<=$this->_request->getPost("total_estudiantes");$i++)
-                    {
-                         
-                    }*/
                                           
                     $this->_helper->redirector('index');
                 }

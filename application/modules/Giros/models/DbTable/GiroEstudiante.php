@@ -7,9 +7,11 @@ class Giros_Model_DbTable_GiroEstudiante extends Zend_Db_Table_Abstract
        
     function insertar($resolucion,$datos)
     {
-        var_dump($datos);
+        if(empty($datos['total_estudiantes']))
+            $datos['total_estudiantes']=1;
+            
         for($i=1;$i<=$datos['total_estudiantes'];$i++){
-            $sql = "Insert into giro_estudiante values ('',".$resolucion.",".$datos['cod_es_'.$i].",".$datos['val_es_'.$i].")";
+            $sql = "insert into giro_estudiante values ('',".$resolucion.",".$datos['cod_es_'.$i].",".$datos['val_es_'.$i].")";
             $this->getAdapter()->query($sql);
         }
     }
