@@ -47,7 +47,24 @@ class Giros_GiroController extends Zend_Controller_Action
                    
                     $consulta2=new Giros_Model_DbTable_GiroEstudiante();
                     $consulta2->insertar($resolucion, $_POST);  
-                                          
+                         
+                    $config = array('ssl' => 'tls', 'port' => 587, 'auth' => 'login', 'username' => 'opregonerog@gmail.com', 'password' => 'Gwind708*');
+                    $smtpConnection = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+                    Zend_Mail::setDefaultFrom('opregonerog@gmail.com', 'Opregonerog');
+                    Zend_Mail::setDefaultReplyTo('opregonerog@gmail.com','Opregonerog');
+                    
+                    if(empty($_POST['total_estudiantes']))
+                        $_POST['total_estudiantes']=1;
+                    
+                    for($i=1;$i<=$_POST['total_estudiantes'];$i++){
+                        $mail = new Zend_Mail();
+                        $mail->addTo($_POST['ema_es_'.$i], $_POST['nom_es_'.$i]);
+                        $mail->setSubject('Giro Icetex');
+                        $mail->setBodyText('su registro en poringa ha sido exitoso');
+                        $mail->send($smtpConnection);
+                    }
+                    Zend_Mail::clearDefaultFrom();
+                    Zend_Mail::clearDefaultReplyTo();                     
                     $this->_helper->redirector('index');
                 }
                 else
