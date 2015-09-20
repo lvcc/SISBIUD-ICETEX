@@ -196,5 +196,11 @@ class Giros_GiroController extends Zend_Controller_Action
         }
     }
 
+    public function editargiroAction()
+    {
+        // action body
+    }
+
 
 }
+
