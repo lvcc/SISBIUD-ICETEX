@@ -30,7 +30,7 @@
                             <div class="added" style=" clear: both; overflow: hidden;">
                                 <div class="formulariogiro">
                                     <label>Código estudiante:</label>
-                                    <input type="text" name="cod_es_1" class="form-control estudiante_codigo" id="cod_es_1">
+                                    <input type="text" name="cod_es_1" class="form-control estudiante_codigo required" id="cod_es_1">
                                 </div>
                                 <div class="formulariogiro">
                                     <label>Nombre:</label>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="formulariogiro" >
                                     <label>Valor girado:</label>
-                                    <input type="text" name="val_es_1" class="form-control estudiantes_valor_girado" id="val_es_1">
+                                    <input type="text" name="val_es_1" class="form-control estudiantes_valor_girado required" id="val_es_1">
                                 </div>
                                 <a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a>
                             </div>
@@ -63,11 +63,12 @@
                         </div>
                     </div>
                 </form>
+                <div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span></div>
             </div>
 
         </div>
     </div>
-</div>
+</div>  
 <script type="text/javascript">
     $('#sandbox-container').datepicker({
     });
@@ -86,7 +87,7 @@
             {
                 FieldCount++;
                 //agregar campo
-                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo required"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control required"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
                 x++; //text box increment
                  $('#total_estudiantes').val(FieldCount);
             }
@@ -113,10 +114,6 @@
                 $('#'+columna+'_aviso').html(data);
                 });
             }
-            if($('.error').length>0)
-                $('#submit').prop('disabled',true);
-            else
-                $('#submit').prop('disabled',false);
     });    
 </script>
 
@@ -142,7 +139,8 @@
 </script>
 
 <script>
-        $('.modal-header').click(function(e){
+        $('#resolucion_form').submit(function(e){
+           var msj="";
            var codigos = [];
             $('.estudiante_codigo').each(function(i,val){
                codigos.push($(this).val());
@@ -155,19 +153,27 @@
                        duplicados++;
                });
                if(duplicados>1){
+                   msj = "Hay beneficiarios repetidos<br>";
                    $('.estudiante_codigo').each(function(k,val){
                        if(k===i)
-                           $(this).addClass('duplicado');
+                           $(this).addClass('alert-danger');
                        });
+                  e.preventDefault();
                }
                duplicados = 0;
+               $('.required').each(function () {
+                if(!$(this).val())
+                    {
+                     msj += " El campo "+$(this).attr('name')+' es requerido<br>'; 
+                    }            
+               });
+               if(!!msj)
+                {
+                    event.preventDefault();
+                    $('#popup').html('<span class="button b-close"><span>X</span></span>'+msj);
+                    $('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+                    msj="";
+                }      
            });
-           e.preventDefault();
         });       
 </script>
-<style>
-    .duplicado
-    {
-        background:red !important;
-    }
-</style>

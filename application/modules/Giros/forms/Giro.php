@@ -8,17 +8,17 @@ class Giros_Form_Giro extends Zend_Form
         $this->setName('giro');
         
         $resolucion=new Zend_Form_Element_Text('id_resolucion');
-        $resolucion->setAttrib("required", "required")
-                ->setAttrib("class", "form-control unico");
+        $resolucion
+                ->setAttrib("class", "form-control unico required");
         
         $fecha=new Zend_Form_Element_Text('fecha_giro');
-        $fecha->setAttrib("required", "required")
-                ->setAttrib("class", "form-control")
+        $fecha
+                ->setAttrib("class", "form-control required")
                 ->setAttrib('id', 'sandbox-container');
         
         $valortotal=new Zend_Form_Element_Text('valor_total');
-        $valortotal->setAttrib("required", "required")
-                ->setAttrib("class", "form-control");        
+        $valortotal
+                ->setAttrib("class", "form-control required");        
                
         $submit=new Zend_Form_Element_Submit('insertar');
         $submit->setLabel('Ingresar Giro')
