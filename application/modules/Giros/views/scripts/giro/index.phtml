@@ -15,7 +15,7 @@
             <tbody>
                 <?php foreach ($this->mostrar as $m) : ?>
                     <tr>
-                        <?php //$idmod = $mod->cod_modalidad_credito; ?>
+                        <?php $idgiroes = $m->id_resolucion; ?>
                         <td ><?php echo $this->escape($m->id_resolucion); ?></td>
                         <td><?php echo $this->escape($m->fecha_giro); ?></td>
                         <!--<td><?php //echo $this->escape(fechaMysql($m->fecha_giro)); ?></td>-->
@@ -28,7 +28,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a data-toggle="modal" name='<?php echo $idmod; ?>' href="#verModal">Ver</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="<?php echo $this->url(array('module' => 'Modalidad', 'controller' => 'Modalidad', 'action' => 'actualizarmodalidad', 'id' => $idmod)); ?>">Editar</a></li>
+                                    <li><a href="<?php echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'editargiro', 'id' => $idgiroes)); ?>">Editar</a></li>
                                     <li class="divider"></li>
                                     <li>
                                         <a data-href="<?php echo $this->url(array('module' => 'Modalidad', 'controller' => 'Modalidad', 'action' => 'eliminarmodalidad', 'id' => $idmod)); ?>" data-toggle="modal" data-target="#confirm-delete" href="#">

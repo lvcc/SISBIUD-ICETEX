@@ -124,6 +124,7 @@
           var pos = (($(this).attr('id')).split("_"))[2];
           var estudiante_cod = $(this).val();
           campo="Nombre";
+          console.log("hola");
           $.post('giro/disponible', {'estudiante_cod':estudiante_cod, 'tabla2':tabla2, 'campo':campo}, function(data2) {
                 $('#nom_es_'+pos).val(data2);
                 });

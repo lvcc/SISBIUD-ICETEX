@@ -132,10 +132,8 @@ class Giros_GiroController extends Zend_Controller_Action
 
     public function disponibleAction()
     {
-        
         if (Zend_Auth::getInstance()->hasIdentity()) 
         {
-            
             if($this->getRequest()->isPost())
             {
                 
@@ -182,7 +180,6 @@ class Giros_GiroController extends Zend_Controller_Action
                 $campo=$datos['campo'];
                 $tabla=$datos['tabla'];
                 $columna=$datos['estudiante_cod'];
-                die("hola");
                 $table= new Giros_Model_DbTable_Beneficiarios();
                 $disponibilidad=$table->validardisponibilidad($campo,$tabla,$columna);
                 if($disponibilidad>0)
@@ -198,7 +195,46 @@ class Giros_GiroController extends Zend_Controller_Action
 
     public function editargiroAction()
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            $this->view->title="Actualizar Giro - ";
+            $this->view->headTitle($this->view->title);
+            $formEditar=new Giros_Form_Giro();
+            
+            $this->view->form=$formEditar;
+            if($this->getRequest()->isPost())
+            {
+                $formDatos=  $this->getRequest()->getPost();
+                if($formEditar->isValid($formDatos))
+                {
+                    $giro=new Giros_Model_DbTable_GiroEstudiante();
+                    $giro->limpiarGiro($_POST['id_resolucion']);
+                    $giro->actualizar($_POST['id_resolucion'],$_POST);
+                    $this->_helper->redirector('index');
+                }
+                else
+                {
+                    $formEditar->populate($formDatos);
+                }
+            }
+            else
+            {
+                
+                $id=$this->_getParam('id',0);
+                if(strlen($id)>0)
+                {
+                    $formActualizar=new Giros_Model_DbTable_Resolucion();
+                    $actualizar=$formActualizar->get($id);
+                    $formEditar->populate($actualizar);
+                    $estudiantesgiro = new Giros_Model_DbTable_GiroEstudiante();
+                    $estudiantes=$estudiantesgiro->get_estudiantes($id);
+                    $this->view->estudiantes=$estudiantes;
+                }
+            }
+        }else 
+        {
+            $this->_redirect('Index/index');
+        } 
     }
 
 
