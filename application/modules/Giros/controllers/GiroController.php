@@ -239,7 +239,22 @@ class Giros_GiroController extends Zend_Controller_Action
 
     public function vergiroAction()
     {
-        // action body
+      if (Zend_Auth::getInstance()->hasIdentity()) {
+            $this->view->title="Giro - ";
+            $this->view->headTitle($this->view->title);
+            $id=$this->_getParam('id',0);
+            
+            if(strlen($id)>0) {
+              $formVer=new Giros_Model_DbTable_Resolucion();
+              $ver=$formVer->get($id);
+              $this->view->giro=$ver;
+              $estudiantesgiro = new Giros_Model_DbTable_GiroEstudiante();
+              $estudiantes=$estudiantesgiro->get_estudiantes($id);
+              $this->view->estudiantes=$estudiantes;
+            }             
+        } else {
+            $this->_redirect('Index/index');
+        } 
     }
 
 
