@@ -43,15 +43,16 @@
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $baseUrl; ?>/imagenes/favicon.ico" />
     </head>
 <body>
-    
     <header>
 	<img src="<?php echo $baseUrl;?>/imagenes/banner1.png" style="width: 100%;" />
     </header>
+    
     <nav <?php if (isset($perfil)) { ?> class="navbar navbar-default" <?php } ?> role="navigation">
       <?php if (isset($perfil)) {
 	  echo $this->render('nav.phtml');
       } ?>
     </nav>
+    
     <article style="margin-left: 5%;">
       <?php if (isset($perfil)){ ?>
       <div role="navigation" class="list-group">
@@ -59,6 +60,11 @@
       </div>
       <?php }?>
     </article>
-    <?php echo $this->layout()->content; ?>
-</body>
+    
+    <?php echo $this->layout()->content; ?>  
+    
+    <footer><cite>Universidad Distrital Francisco José de Caldas</cite></footer>  
+    
+</body>    
+
 </html>

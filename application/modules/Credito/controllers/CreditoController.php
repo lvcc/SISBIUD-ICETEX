@@ -21,6 +21,13 @@ class Credito_CreditoController extends Zend_Controller_Action
         }
     }
 
+    public function crearcreditoAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
