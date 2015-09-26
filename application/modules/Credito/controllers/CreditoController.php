@@ -12,8 +12,8 @@ class Credito_CreditoController extends Zend_Controller_Action
     {
          if (Zend_Auth::getInstance()->hasIdentity()) 
         {
-            $muestragiros=new Giros_Model_DbTable_Resolucion();
-            $this->view->mostrar=$muestragiros->mostrarGiros();
+            $creditos=new Credito_Model_DbTable_Credito();
+            $this->view->creditos=$creditos->lista_creditos();
         }
         else
         {
