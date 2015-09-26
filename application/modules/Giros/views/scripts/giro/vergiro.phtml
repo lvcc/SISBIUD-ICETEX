@@ -2,60 +2,56 @@
     <div class="panel-primary panel">
         <div class="panel-heading"><h4 class="panel-title">GIRO</h4></div>
     </div>
-    <form id = "resolucion_form" class="panel panel-body" style="box-shadow: 1px 0px 5px 1px #cccccc;" method="post">
+            <div>
             <div class="form-group">
-                <div class="formulariogiro">
-                    <label>Número de resolución:</label>
-                    <input type="text" name="id_resolucion" class="form-control estudiante_codigo required" id="id_resolucion" value="<?php echo $this->giro['id_resolucion']; ?>">
+                           <div style ="clear: both"align="left">
+                            <button type="button" class="btn btn-default">Regresar</button>
+                           </div>
                 </div>
-                <div class="formulariogiro">
-                    <label>Fecha:</label>
-                    <input type="text" name="fecha_giro" class="form-control required" id="fecha_giro" value="<?php echo $this->giro['fecha_giro']; ?>">
+      
+                <div class ="well col-md-4">
+                    <div class = "muestranom" align = "left" ><strong>Número de resolución:</strong></div>
+                    <p align ="justify"><?php echo $this->giro['id_resolucion']; ?></p>
                 </div>
-                <div class="formulariogiro">
-                    <label>Valor total:</label>
-                    <input type="text" name="valor_total" class="form-control required" id="valor_total" value="<?php echo $this->giro['valor_total']; ?>">
+                <div class ="well col-md-4">
+                    <div class = "muestranom" align = "left" ><strong>Fecha:</strong></div>
+                    <p align ="justify"><?php echo $this->giro['fecha_giro']; ?></p>
                 </div>
-           
+                <div class ="well col-md-4">
+                    <div class = "muestranom" align = "left" ><strong>Valor total:</strong></div>
+                    <p align ="justify"><?php echo $this->giro['valor_total']; ?></p>
+                </div>
+                
             <div id="cont">
-            <?php $i=1; ?>
-               
+            <?php $i=1; ?>   
             <?php foreach ($this->estudiantes as $estudiante) : ?>
-                <div class="added" style=" clear: both; overflow: hidden;">
-                <input type="hidden" name="cod_bene_<?php echo $i ?>" value="<?php echo $estudiante['cod_estudiante']; ?>">
-                <div class="formulariogiro">
-                    <label>Codigo Estudiante</label>
-                    <input type="text" name="cod_es_<?php echo $i ?>" class="form-control estudiante_codigo required" id="cod_es_<?php echo $i ?>" value="<?php echo $estudiante['codigo_ud']; ?>">
+                <div class ="well col-md-6">
+                <div>
+                    <div class ="muestranom" align = "left" ><strong>Codigo Estudiante</strong></div>
+                    <p align ="justify"><?php echo $estudiante['codigo_ud']; ?></p>
                 </div>
-                <div class="formulariogiro">
-                    <label>Nombre</label>
-                    <input type="text" name="nom_es_<?php echo $i ?>" class="form-control" id="nom_es_1" value="<?php echo $estudiante['nombre_completo']; ?>">
+                <div>
+                    <div class ="muestranom align" align = "left" ><strong>Nombre</strong></div>
+                    <p align ="justify"><?php echo $estudiante['nombre_completo']; ?></p>
                 </div>
-                <div class="formulariogiro">
-                    <label>Carrera</label>
-                    <input type="text" name="carr_es_<?php echo $i ?>" class="form-control" id="carr_es_1" value="<?php echo $estudiante['proyecto']; ?>">
+                <div>
+                    <div class ="muestranom align" align = "left" ><strong>Carrera</strong></div>
+                    <p align ="justify"><?php echo $estudiante['proyecto']; ?></p>
                 </div>
-                <div class="formulariogiro">
-                    <label>eMail</label>
-                    <input type="text" name="ema_es_<?php echo $i ?>" class="form-control" id="ema_es_1" value="<?php echo $estudiante['email']; ?>">
+                <div>
+                    <div class ="muestranom align" align = "left" ><strong>eMail</strong></div>
+                    <p id ="texto" align ="justify"><?php echo empty($estudiante['email']) ? 'No hay email registrado':$estudiante['email'] ?></p>
                 </div>
-                <div class="formulariogiro">
-                    <label>Valor Girado</label>
-                    <input type="text" name="val_es_<?php echo $i ?>" class="form-control" id="val_es_1" value="<?php echo $estudiante['valor_girado_estudiante']; ?>">
+                <div>
+                    <div class ="muestranom align" align = "left" ><strong>Valor Girado</strong></div>
+                    <p id ="texto" align ="justify"><?php echo $estudiante['valor_girado_estudiante']; ?></p>
                 </div>
-                <a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a>
-                <div style=" clear: both; overflow: hidden;"></div>
                 </div>
                 <?php $i++; ?>
              <?php endforeach; ?>
             </div>
             
-                <div class="form-group">
-                        <div align="right">
-                            <button type="button" class="btn btn-default">Cancelar</button>
-                        </div>
-                </div>
-            
+                          
         </div>
             
            

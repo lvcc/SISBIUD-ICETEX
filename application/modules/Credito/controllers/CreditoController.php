@@ -10,7 +10,15 @@ class Credito_CreditoController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+         if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            $muestragiros=new Giros_Model_DbTable_Resolucion();
+            $this->view->mostrar=$muestragiros->mostrarGiros();
+        }
+        else
+        {
+            $this->_redirect('Index/index');
+        }
     }
 
 
