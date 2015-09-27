@@ -68,7 +68,7 @@ class Usuarios_Form_Usuarios extends Zend_Form
                 ->setAttrib('class', 'form-control required');
         
         $submit=new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Insertar')
+        $submit->setLabel('Guardar')
                 ->setAttrib('class', 'btn btn-primary');
         
         $this->addElements(array($usuario,$contrasena,$identificacion,$nombre,$apellido,$cargo,$perfil,$estado,$submit));

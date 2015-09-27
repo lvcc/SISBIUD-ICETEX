@@ -8,10 +8,10 @@
         <div class="form-group"><?php echo $this->formLogin->getElement('contrasenia'); ?></div>
         <div class="form-group"><?php echo $this->formLogin->getElement('submit'); ?></div>
     </div>
-      <div id ='popup' class ='modal-body' style ='display:none'><span class='button b-close'><span>X</span></span><?php echo $this->errorMessage; ?></div>
+      <div id ='popup' class ='modal-body' style ='display:none'><span class='button b-close'><span>X</span></span><?php echo "<span style='color:#ff0000;padding-right:10px;'>&#x2605;</span>".$this->errorMessage; ?></div>
      <?php 
         if(!empty($this->errorMessage)){
-        echo "<div id ='popup' class ='modal-body' style ='display:none'><span class='button b-close'><span>X</span></span>".$this->errorMessage."</div>";
+        echo "<div id ='popup' class ='modal-body' style ='display:none;'><span class='button b-close'><span>X</span></span>".$this->errorMessage."</div>";
         echo "<script>$('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});</script>";}
      ?>
   </div>
@@ -22,7 +22,7 @@
         $('.required').each(function () {
             if(!$(this).val())
                 {
-                  msj += " El campo "+$(this).attr('name')+' es requerido<br>'; 
+                  msj += "<div style='padding:20px;'><span style='color:#ff0000;'>&#x2605;</span> El campo "+$(this).attr('name')+' es requerido</div>'; 
                 }            
         });
         if(!!msj)

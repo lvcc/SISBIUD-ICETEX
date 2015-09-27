@@ -40,18 +40,15 @@ class Usuarios_Model_DbTable_Usuario extends Zend_Db_Table_Abstract
     
     function modificarUsuario($usuario,$contrasena,$iden,$nombre,$apellido,$cargo,$perfil,$estado)
     {
-        $data=array('nombre_usuario'=>$usuario,'contrasena'=>$contrasena,'identificacion'=>$iden,'nombre_real'=>$nombre,'apellido_real'=>$apellido,'cargo'=>$cargo,'perfil'=>$perfil,'estado'=>$estado);
-        $where["nombre_usuario = ?"]=$usuario;
-        var_dump($where);
-        $this->update($data, $where);
-//update($data, "nombre_usuario = '".$usuario."'");
+        $data=array('contrasena'=>$contrasena,'identificacion'=>$iden,'nombre_real'=>$nombre,'apellido_real'=>$apellido,'cargo'=>$cargo,'perfil'=>$perfil,'estado'=>$estado);
+        //$where["nombre_usuario = ?"]=$usuario;
+        //$this->update($data, $where);
+        $this->update($data, "nombre_usuario = '".$usuario."'");
     }
     
-    /*function eliminarUsuario($usuario)
+    function eliminarUsuario($usuario)
     {
         $this->delete('nombre_usuario = "'.$usuario.'"');
-    }*/
-    
-
+    }
 }
 

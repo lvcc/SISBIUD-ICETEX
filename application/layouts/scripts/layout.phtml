@@ -1,6 +1,7 @@
 <?php echo $this->doctype() ?>
 <html>
     <head>
+        
         <?php 
         $session = new Zend_Session_Namespace('SuperAdmin');
         $auth = Zend_Auth::getInstance()->getIdentity();
@@ -29,6 +30,7 @@
         $this->headScript()->appendFile($baseUrl.'/easing/jquery.easing.1.3.js');
 	echo $this->headScript();?>
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $baseUrl; ?>/imagenes/favicon.ico" />
+        
     </head>
 <body>
     <header>

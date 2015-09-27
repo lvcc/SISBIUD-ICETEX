@@ -39,7 +39,8 @@ class Usuarios_UsuarioController extends Zend_Controller_Action
                 if($formusuario->isValid($formData))
                 {
                     $nombreusuario=$formusuario->getValue('nombre_usuario');
-                    $contrasena=$formusuario->getValue('contrasena');
+                    //$contrasena=$formusuario->getValue('contrasena');
+                    $contrasena = md5($formusuario->getValue('contrasena').'%2+7FVJ.tQuWa8ssM2@J"pb*>nDnz0x:p\C'); //md5('claveUsuario'.'textoCualquiera_KeyPass') concatenamos la clave 
                     $identificacion=$formusuario->getValue('identificacion');
                     $nombre=$formusuario->getValue('nombre_real');
                     $apellido=$formusuario->getValue('apellido_real');
@@ -80,23 +81,23 @@ class Usuarios_UsuarioController extends Zend_Controller_Action
                 if($formEditar->isValid($formDatos))
                 {
                     $nombreusuario=$formEditar->getValue('nombre_usuario');
-                    $contrasena=$formEditar->getValue('contrasena');
+                    //$contrasena=$formEditar->getValue('contrasena');
+                    $contrasena = md5($formEditar->getValue('contrasena').'%2+7FVJ.tQuWa8ssM2@J"pb*>nDnz0x:p\C'); //md5('claveUsuario'.'textoCualquiera_KeyPass') concatenamos la clave 
                     $id=$formEditar->getValue('identificacion');
                     $nombres=$formEditar->getValue('nombre_real');
                     $apellidos=$formEditar->getValue('apellido_real');
                     $cargo=$formEditar->getValue('cargo');
                     $perfil=$formEditar->getValue('perfil');
                     $estado=$formEditar->getValue('estado');
-                    
+                    //var_dump($_POST);
                     $formActualizar=new Usuarios_Model_DbTable_Usuario();
-                    var_dump($formActualizar->modificarUsuario($nombreusuario, $contrasena, $id, $nombres, $apellidos, $cargo, $perfil, $estado));
-                    /*
-                    $this->_helper->redirector('index');*/
+                    $formActualizar->modificarUsuario($nombreusuario, $contrasena, $id, $nombres, $apellidos, $cargo, $perfil, $estado);
+                    
+                    $this->_helper->redirector('index');
                 }
                 else
                 {
-                    echo 'ononono';
-                    //$formEditar->populate($formDatos);
+                    $formEditar->populate($formDatos);
                 }
             }
             else
@@ -119,7 +120,16 @@ class Usuarios_UsuarioController extends Zend_Controller_Action
 
     public function eliminarusuarioAction()
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            $id=  $this->_getParam('id',0);
+            $borrar=new Usuarios_Model_DbTable_Usuario();
+            $borrar->eliminarUsuario($id);
+            $this->_helper->redirector('index');
+        }else 
+        {
+            $this->_redirect('Index/index');
+        }
     }
 
     public function disponibleAction()

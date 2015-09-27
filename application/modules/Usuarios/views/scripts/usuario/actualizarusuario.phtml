@@ -2,7 +2,7 @@
     <div class="panel-primary panel">
         <div class="panel-heading"><h4 class="panel-title">ACTUALIZAR USUARIO</h4></div>
     </div>
-    <form class="panel panel-body" style="box-shadow: 1px 0px 5px 1px #cccccc;" method="post">
+    <form class="panel panel-body" style="box-shadow: 1px 0px 5px 1px #cccccc;" method="post" id="usuario_form">
         <table style="width: 100%;">
             <tr>
                 <td><label>Nombre de Usuario</label></td>
@@ -39,10 +39,9 @@
         </table>
         <div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span></div>
     </form>
-<?php //echo $this->form; ?>
 </aside>
 <script>
-     $('.form-signin').submit(function(event){        
+     $('#usuario_form').submit(function(event){        
         var msj="";
         $('.required').each(function () {
             if(!$(this).val())
@@ -57,5 +56,9 @@
           $('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
           msj="";
         }                    
+     });
+     $(document).ready(function() {
+     $("#nombre_usuario").prop("readonly", true);
+     $("#identificacion").prop("readonly", true);
      });
 </script>

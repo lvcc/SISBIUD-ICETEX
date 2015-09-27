@@ -30,7 +30,8 @@ class Index_IndexController extends Zend_Controller_Action
             {
                 $this->authAdapter =  $this->getAuthAdapter();
                 $usuario=$formulariologin->getValue('usuario');
-                $contrasena=$formulariologin->getValue('contrasenia');
+                //$contrasena=$formulariologin->getValue('contrasenia');
+                $contrasena = md5($formulariologin->getValue('contrasenia').'%2+7FVJ.tQuWa8ssM2@J"pb*>nDnz0x:p\C'); //md5('claveUsuario'.'textoCualquiera_KeyPass') concatenamos la clave 
                 $this->authAdapter->setIdentity($usuario)
                         ->setCredential($contrasena);
                 $this->auth = Zend_Auth::getInstance();
