@@ -30,8 +30,27 @@
                         </div>
                     </div>
                 </form>
+                <div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span></div>
             </div>
 
         </div>
     </div>
 </div>
+<script>
+$('#insertEstado').submit(function(event){        
+        var msj="";
+        $('.required').each(function () {
+            if(!$(this).val())
+                {
+                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido.</div>'; 
+                }            
+        });
+        if(!!msj)
+        {
+         event.preventDefault();
+          $('#popup').html('<span class="button b-close"><span>X</span></span>'+msj);
+          $('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+          msj="";
+        }                    
+     });
+</script>

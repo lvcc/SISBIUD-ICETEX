@@ -2,7 +2,7 @@
     <div class="panel-primary panel">
         <div class="panel-heading"><h4 class="panel-title">ACTUALIZAR ESTADO DE CRÉDITO</h4></div>
     </div>
-    <form class="panel panel-body" style="box-shadow: 1px 0px 5px 1px #cccccc;" method="post">
+    <form class="panel panel-body" style="box-shadow: 1px 0px 5px 1px #cccccc;" method="post" id="formUpda">
         <table >
             <tr>
                 <?php echo $this->form->getElement('id_estado_credito'); ?>
@@ -17,6 +17,25 @@
                 <td><button class="btn btn-default" onclick="location.href='<?php echo $this->url(array('module'=>'Estado','controller'=>'Estado','action'=>'index')); ?>'">Cancelar</button></td>
             </tr>
         </table>
+        <div id ='popup' style ='display:none'><span class='button b-close'><span>X</span></span></div>
     </form>
 <?php //echo $this->form; ?>
 </aside>
+<script>
+     $('#formUpda').submit(function(event){        
+        var msj="";
+        $('.required').each(function () {
+            if(!$(this).val())
+                {
+                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido</div>'; 
+                }            
+        });
+        if(!!msj)
+        {
+         event.preventDefault();
+          $('#popup').html('<span class="button b-close"><span>X</span></span>'+msj);
+          $('#popup').bPopup({ easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+          msj="";
+        }                    
+     });
+</script>

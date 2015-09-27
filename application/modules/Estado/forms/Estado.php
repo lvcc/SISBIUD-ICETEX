@@ -10,12 +10,12 @@ class Estado_Form_Estado extends Zend_Form
         $id = new Zend_Form_Element_Hidden('id_estado_credito');
         $id->addFilter('Int');
         $nombre = new Zend_Form_Element_Text('nombre_estado_credito');
-        $nombre->setAttrib('required', 'required')
+        $nombre//->setAttrib('required', 'required')
              ->setRequired(true)
-             ->setAttrib('class', 'form-control')
+             ->setAttrib('class', 'form-control required')
              ->addValidator('notEmpty');
         $descripcion = new Zend_Form_Element_Textarea('descripcion_estado_credito');
-        $descripcion->setAttrib('required', 'required')
+        $descripcion//->setAttrib('required', 'required')
                     ->addValidator('notEmpty')
                     ->setAttrib('cols', 50)
                     ->setAttrib('rows', 6)
@@ -23,11 +23,9 @@ class Estado_Form_Estado extends Zend_Form
                     ->addFilter('StripTags')
                     ->addFilter('StringTrim');
         $submit = new Zend_Form_Element_Submit('insertar');
-        $submit->setLabel('Insertar')
+        $submit->setLabel('Guardar')
                ->setAttrib('class', 'btn btn-primary');
-       
-        
-        $listaEstado = new Estado_Model_DbTable_EstadoDeCredito();
+       /*$listaEstado = new Estado_Model_DbTable_EstadoDeCredito();
         $listaEstados = $listaEstado->Estados();
         foreach ($listaEstados as $lE) 
         {
@@ -38,9 +36,10 @@ class Estado_Form_Estado extends Zend_Form
         $submit2 = new Zend_Form_Element_Submit('eliminar');
         $submit2->setLabel('Eliminar')
                ->setAttrib('class', 'btn btn-danger');
-        $checkbox->addMultiOptions($lista);
+        $checkbox->addMultiOptions($lista);*/
         //$this->addElements(array($tipo,$descripcion,$submit,$submit2,$checkbox));
-        $this->addElements(array($id,$nombre,$descripcion,$submit,$submit2,$checkbox));
+        //$this->addElements(array($id,$nombre,$descripcion,$submit,$submit2,$checkbox));
+        $this->addElements(array($id,$nombre,$descripcion,$submit));
         $this->setElementDecorators(array('ViewHelper',"Errors"));
     }
 

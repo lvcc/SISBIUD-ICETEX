@@ -14,8 +14,8 @@ class Modalidad_Form_Modalidad extends Zend_Form
         $nombre ->addFilter('StripTags')
                 ->addFilter('StringTrim')
                 ->addValidator('NotEmpty')
-                ->setAttrib('required', 'required')
-                ->setAttrib('class', 'form-control');
+                //->setAttrib('required', 'required')
+                ->setAttrib('class', 'form-control required');
         $descripcion=new Zend_Form_Element_Textarea('descripcion_modalidad');
         $descripcion->setAttrib('cols', 50)
                 ->setAttrib('rows', 6)
@@ -25,7 +25,7 @@ class Modalidad_Form_Modalidad extends Zend_Form
                 ->addFilter('StringTrim');
         $submit=new Zend_Form_Element_Submit('submitmodalidad');
         $submit->setAttrib('class', 'btn btn-primary')
-                ->setLabel('Insertar');
+                ->setLabel('Guardar');
                 
         
         $this->addElements(array($id,$nombre,$descripcion,$submit));

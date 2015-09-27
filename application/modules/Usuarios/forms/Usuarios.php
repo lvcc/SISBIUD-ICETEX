@@ -28,7 +28,8 @@ class Usuarios_Form_Usuarios extends Zend_Form
         $identificacion
                 //->setRequired(true)
                 ->addFilter('StripTags')
-                ->setAttrib('class', 'form-control required unico');
+                ->setAttrib('class', 'form-control required unico')
+                ->setAttrib('onkeypress', 'ValidaSoloNumeros();');
         
         $nombre=new Zend_Form_Element_Text('nombre_real');
         $nombre

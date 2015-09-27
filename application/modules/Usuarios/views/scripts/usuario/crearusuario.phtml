@@ -80,7 +80,7 @@
         $('.required').each(function () {
             if(!$(this).val())
                 {
-                  msj += " El campo "+$(this).attr('name')+' es requerido<br>'; 
+                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido.</div>'; 
                 }            
         });
         if(!!msj)
@@ -104,4 +104,6 @@
                 });
             }
     });
+    
+
 </script>
