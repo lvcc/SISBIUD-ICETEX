@@ -21,7 +21,7 @@ class Giros_Form_Giro extends Zend_Form
                 ->setAttrib("class", "form-control required");        
                
         $submit=new Zend_Form_Element_Submit('insertar');
-        $submit->setLabel('Ingresar Giro')
+        $submit->setLabel('Guardar Giro')
                 ->setAttrib('class', 'btn btn-primary');
         
         $this->addElements(array($resolucion,$fecha,$valortotal,$submit));

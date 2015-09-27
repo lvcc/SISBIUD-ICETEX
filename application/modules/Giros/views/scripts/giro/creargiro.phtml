@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 <form id = "resolucion_form"class="form-horizontal" role="form" method="post">
-                    <input type = "text" id = "total_estudiantes" name ="total_estudiantes">
+                    <input type = "hidden" id = "total_estudiantes" name ="total_estudiantes">
                     <div class="form-group">
                         <div class="formulariogiro">
                             <label>Número de resolución:</label>
@@ -34,15 +34,15 @@
                                 </div>
                                 <div class="formulariogiro">
                                     <label>Nombre:</label>
-                                    <input type="text" name="nom_es_1" class ="form-control" id ="nom_es_1">
+                                    <input type="text" name="nom_es_1" class ="form-control" id ="nom_es_1" readonly="true" />
                                 </div>
                                 <div class="formulariogiro">
                                     <label>Carrera:</label>
-                                    <input type="text" name="carr_es_1" class ="form-control" id ="carr_es_1">
+                                    <input type="text" name="carr_es_1" class ="form-control" id ="carr_es_1" readonly="true" />
                                 </div>
                                 <div class="formulariogiro">
-                                    <label>eMail:</label>
-                                    <input type="text" name="ema_es_1" class ="form-control" id ="ema_es_1">
+                                    <label>E-mail:</label>
+                                    <input type="text" name="ema_es_1" class ="form-control" id ="ema_es_1" readonly="true" />
                                 </div>
                                 <div class="formulariogiro" >
                                     <label>Valor girado:</label>
@@ -87,7 +87,7 @@
             {
                 FieldCount++;
                 //agregar campo
-                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo required"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control required"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_'+FieldCount+'" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo required"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"  class="form-control" readonly="true" /></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '"  class="form-control" readonly="true"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control" readonly="true" /></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control required"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
                 x++; //text box increment
                  $('#total_estudiantes').val(FieldCount);
             }
@@ -165,7 +165,7 @@
                $('.required').each(function () {
                 if(!$(this).val())
                     {
-                     msj += " El campo "+$(this).attr('name')+' es requerido<br>'; 
+                     msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido</div>'; 
                     }            
                });
                if(!!msj)

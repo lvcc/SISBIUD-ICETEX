@@ -60,7 +60,7 @@ class Giros_GiroController extends Zend_Controller_Action
                         $mail = new Zend_Mail();
                         $mail->addTo($_POST['ema_es_'.$i], $_POST['nom_es_'.$i]);
                         $mail->setSubject('Giro Icetex');
-                        $mail->setBodyText('su registro en poringa ha sido exitoso');
+                        $mail->setBodyHtml('Se&ntilde;or(a) estudiante: <br><br> Le informamos que el ICETEX ya realiz&oacute; el giro correspondiente de este semestre.<br><br>Por favor dir&iaucute;jase a la oficina de la Universidad Distrital.');
                         $mail->send($smtpConnection);
                     }
                     Zend_Mail::clearDefaultFrom();
@@ -208,6 +208,7 @@ class Giros_GiroController extends Zend_Controller_Action
                 if($formEditar->isValid($formDatos))
                 {
                     $giro=new Giros_Model_DbTable_GiroEstudiante();
+                    //$reso=new Giros_Model_DbTable_Resolucion();
                     $giro->limpiarGiro($_POST['id_resolucion']);
                     $giro->actualizar($_POST['id_resolucion'],$_POST);
                     $this->_helper->redirector('index');

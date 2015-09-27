@@ -18,7 +18,7 @@
                         <?php $idgiroes = $m->id_resolucion; ?>
                         <td ><?php echo $this->escape($m->id_resolucion); ?></td>
                         <td><?php echo $this->escape($m->fecha_giro); ?></td>
-                        <!--<td><?php //echo $this->escape(fechaMysql($m->fecha_giro)); ?></td>-->
+                        <!--<td><?php //echo $this->escape(fechaMysql($m->fecha_giro));  ?></td>-->
                         <td><?php echo $this->escape($m->valor_total); ?></td>
                         <td>
                             <div class="btn-group">
@@ -29,12 +29,6 @@
                                     <li><a href="<?php echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'vergiro', 'id' => $idgiroes)); ?>">Ver</a></li>
                                     <li class="divider"></li>
                                     <li><a href="<?php echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'editargiro', 'id' => $idgiroes)); ?>">Editar</a></li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a data-href="<?php echo $this->url(array('module' => 'Modalidad', 'controller' => 'Modalidad', 'action' => 'eliminarmodalidad', 'id' => $idmod)); ?>" data-toggle="modal" data-target="#confirm-delete" href="#">
-                                            Eliminar
-                                        </a>
-                                    </li>
                                 </ul>
 
                             </div>
@@ -42,13 +36,13 @@
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-           
+
         </table>
         <p class="text-right" style="margin-top: 20px;">
             <button class="btn btn-danger" data-toggle="modal" data-target="#loginModal">Ingresar nuevo giro</button>
-            <!--<a href="<?php //echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'creargiro2')); ?>">Añadir recargando</a>-->
+            <!--<a href="<?php //echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'creargiro2'));  ?>">Añadir recargando</a>-->
         </p>
-         <!--Modal que contiene el formulario de añadir-->
+        <!--Modal que contiene el formulario de añadir-->
         <?php echo $this->action('creargiro', 'Giro', 'Giros'); ?>
         <!---------------------------------------------->
     </div>
