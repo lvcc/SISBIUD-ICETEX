@@ -69,8 +69,15 @@ class Credito_CreditoController extends Zend_Controller_Action
         }
     }
 
+    public function infobeneficiarioAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

@@ -1,9 +1,11 @@
 <form class="form-signin" method="<?php echo $this->formLogin->getMethod(); ?>">
-  <div class="">
-    <div class="panel-header">
+    <div >
+        <div class="panel-header" style="-webkit-box-shadow: 0 -2px 4px 0 #454545;
+box-shadow: 0 -2px 4px 0 #454545; border-radius: 1.4em 1.4em 0 0;">
         <h2><center>ACCESO</center></h2>
     </div>
-    <div class="panel-body panel panel-primary">
+        <div class="panel-body panel panel-primary" style="-webkit-box-shadow: 0 2px 6px 0 #454545;
+box-shadow: 0 2px 4px 0 #454545;">
         <div class="form-group"><?php echo $this->formLogin->getElement('usuario'); ?></div>
         <div class="form-group"><?php echo $this->formLogin->getElement('contrasenia'); ?></div>
         <div class="form-group"><?php echo $this->formLogin->getElement('submit'); ?></div>

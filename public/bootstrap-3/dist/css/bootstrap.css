@@ -6203,7 +6203,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f00014', end
 }
 
 .panel-primary {
-    border-color: #ff0000;
+    border-color: #fff;
 }
 
 .panel-primary > .panel-heading {
