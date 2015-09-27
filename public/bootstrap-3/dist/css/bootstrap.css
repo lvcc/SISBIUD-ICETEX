@@ -2358,7 +2358,7 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #555555;
     vertical-align: middle;
     background-color: #ffffff;
-    border: 1px solid #ff0000;
+    border: 1px solid #CCCCCC;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -2376,7 +2376,7 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #555555;
     vertical-align: middle;
     background-color: #ffffff;
-    border: 1px solid #ff0000;
+    border: 1px solid #CCCCCC;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -2738,6 +2738,7 @@ fieldset[disabled] .btn {
 .btn-default {
     color: #333333;
     background-color: #ffffff;
+    border-color: #ccc;
 }
 
 .btn-default:hover,

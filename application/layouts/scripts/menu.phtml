@@ -12,8 +12,8 @@
     <div class='navbar-collapse list-group'>
       <div class='list-group-item active'>Menu Principal</div>
       <a class='list-group-item nav-stacked' href='<?php echo $this->url(array('module'=>'Index','controller'=>'index','action'=>'login')); ?>'>Inicio</a>
-      <div class='list-group-item active'>Administracion de usuarios</div>
-      <?php if($perfil == 'Director') { ?><a class='list-group-item nav-stacked' href='<?php echo $this->url(array('module'=>'Usuarios','controller' => 'usuario','action' => 'index')); ?>'>Administrar Usuarios</a><?php } ?>
+      <?php if($perfil == 'Director') { ?><div class='list-group-item active'>Administracion de usuarios</div>
+      <a class='list-group-item nav-stacked' href='<?php echo $this->url(array('module'=>'Usuarios','controller' => 'usuario','action' => 'index')); ?>'>Administrar Usuarios</a><?php } ?>
       <div class='list-group-item active'>Lineas de Credito</div>
       <a class='list-group-item nav-stacked' href='<?php echo $this->url(array('module'=>'Modalidad','controller'=>'modalidad','action'=>'index')); ?>'>Modalidades de crédito</a>
       <a class='list-group-item nav-stacked' href='<?php echo $this->url(array('module'=>'TipoModalidad','controller'=>'TipoModalidad','action'=>'index')); ?>'>Tipo Modalidades de crédito</a>
