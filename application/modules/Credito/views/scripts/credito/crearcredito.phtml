@@ -1,4 +1,123 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Credito</b> and script/action name <b>crearcredito</b></p>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Nuevo crédito</h4>
+            </div>
+            <div class="modal-body">
+                <!-- The form is placed inside the body of modal -->
+                <form id="insertCredito" method="post" class="form-horizontal"><!--id="loginForm"--> 
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Periodo Academico</label>
+                        <div class="col-xs-3">
+                            <?php echo $this->crear->getElement('estudiante_periodo'); ?>
+                        </div>
+                        <label class="col-xs-2 control-label">Codigo</label>
+                        <div class="col-xs-4">
+                            <?php echo $this->crear->getElement('estudiante_cod'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Identificacion</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_id'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Proyecto Curricular</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_carrera'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Nombre</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_nombre'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Departamento</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_departamento'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Municipio</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_municipio'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Promedio</label>
+                        <div class="col-xs-2">
+                            <?php echo $this->crear->getElement('estudiante_promedio'); ?>
+                        </div>
+                        <label class="control-label col-xs-2">Matricula</label>
+                        <div class="col-xs-2">
+                            <?php echo $this->crear->getElement('estudiante_matricula'); ?>
+                        </div>
+                        <label class="control-label col-xs-2">Semestre</label>
+                        <div class="col-xs-2">
+                            <?php echo $this->crear->getElement('estudiante_semestre'); ?>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-xs-4 control-label">Correo Personal</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_cpersonal'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Correo Institucional</label>
+                        <div class="col-xs-7">
+                            <?php echo $this->crear->getElement('estudiante_cinstitucional'); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Estado de credito</label>
+                        <div class="col-xs-7">
+                            <select class = "form-control">
+                                 <?php foreach($this->estados_credito as $estado_credito) : ?>
+                                     <option value="<?php echo $estado_credito['id_estado_credito']; ?>"><?php echo $estado_credito['nombre_estado_credito']; ?></option>
+                                 <?php endforeach;?>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Modalidad de credito</label>
+                        <div class="col-xs-7">
+                            <select class = "form-control">
+                                 <?php foreach($this->modalidades_credito as $modalidad_credito) : ?>
+                                     <option value="<?php echo $modalidad_credito['cod_modalidad_credito']; ?>"><?php echo $modalidad_credito['nombre_modalidad_credito']; ?></option>
+                                 <?php endforeach;?>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Tipo Modalidad de credito</label>
+                        <div class="col-xs-7">
+                            <select class = "form-control">
+                                 <?php foreach($this->tipos_modalidades_credito as $tipo_modalidad_credito) : ?>
+                                     <option value="<?php echo $tipo_modalidad_credito['cod_tipo_modalidad_credito']; ?>"><?php echo $tipo_modalidad_credito['nombre_tipo_modalidad']; ?></option>
+                                 <?php endforeach;?>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <?php echo $this->crear->getElement('insertar'); ?>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>
