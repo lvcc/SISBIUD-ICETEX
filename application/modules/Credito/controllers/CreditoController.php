@@ -50,12 +50,9 @@ class Credito_CreditoController extends Zend_Controller_Action
                 
                     if($formCrear->isValid($formData))
                     {
-                        $nombre=$formCrear->getValue('nombre_estado_credito');
-                        $descripcion=$formCrear->getValue('descripcion_estado_credito');
-
-                        $consulta=new Estado_Model_DbTable_EstadoDeCredito();
-                        $consulta->insertarEstado($nombre, $descripcion);
-
+                        $credito=new Credito_Model_DbTable_Credito();
+                        $credito->insertar($_POST);
+                  
                         $this->_helper->redirector('index');
                     }else
                     {
@@ -71,7 +68,44 @@ class Credito_CreditoController extends Zend_Controller_Action
 
     public function infobeneficiarioAction()
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            if($this->getRequest()->isPost())
+            {
+                
+                $datos = $this->getRequest()->getPost();
+                $codigo_ud = $datos['estudiante_cod'];
+                $beneficiario = new Credito_Model_DbTable_Beneficiarios();
+                $info=$beneficiario->datos_beneficiario($codigo_ud);
+ 
+                switch($datos['campo'])
+                {
+                    case 'numero_documento':
+                        die($info['numero_documento']);
+                    case 'carrera':
+                        die($info['proyecto']);
+                    case 'nombre':
+                        die($info['nombres']." ".$info['apellidos']);
+                    case 'departamento':
+                        die($info['departamento']);
+                    case 'municipio':
+                        die($info['municipio']);
+                    case 'promedio':
+                        die($info['promedio']);
+                    case 'semestre':
+                        die($info['semestre']);
+                    case 'matricula':
+                        die($info['matricula']);
+                    case 'correoi':
+                        die($info['email_institucional']);
+                    case 'correop':
+                        die($info['email_personal']);
+                }
+            }            
+        } else 
+        {
+            $this->_redirect('Index/index');
+        }
     }
 
 

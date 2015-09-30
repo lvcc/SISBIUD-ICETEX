@@ -41,6 +41,18 @@ class Credito_Model_DbTable_Credito extends Zend_Db_Table_Abstract
         }
         return $result;
     }
+    
+    function insertar($datos)
+    {
+            $select = Zend_Db_Table::getDefaultAdapter()->select();
+            $select->from(array('beneficiarios'),array('codigo_beneficiario'));
+            $select->where('codigo_ud = ?',$datos['estudiante_cod']);
+            $result = Zend_Db_Table::getDefaultAdapter()->fetchRow($select);
+            $codigo = $result['codigo_beneficiario'];
+            $sql = "insert into credito values ('','".$datos['estudiante_periodo']."',".$codigo.",".$datos['estado_credito'].",".$datos['modalidad_credito'].",".$datos['tipo_modalidad'].",'".$datos['credito_observaciones']."')";
+            
+            $this->getAdapter()->query($sql);
+    }
 
 }
 
