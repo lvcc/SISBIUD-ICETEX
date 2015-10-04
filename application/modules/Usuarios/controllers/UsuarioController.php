@@ -39,6 +39,7 @@ class Usuarios_UsuarioController extends Zend_Controller_Action
                 if($formusuario->isValid($formData))
                 {
                     $nombreusuario=$formusuario->getValue('nombre_usuario');
+                    $modulo=$formusuario->getValue('modulo');
                     //$contrasena=$formusuario->getValue('contrasena');
                     $contrasena = md5($formusuario->getValue('contrasena').'%2+7FVJ.tQuWa8ssM2@J"pb*>nDnz0x:p\C'); //md5('claveUsuario'.'textoCualquiera_KeyPass') concatenamos la clave 
                     $identificacion=$formusuario->getValue('identificacion');
@@ -49,7 +50,7 @@ class Usuarios_UsuarioController extends Zend_Controller_Action
                     $estado=$formusuario->getValue('estado');
                     
                     $crearBd=new Usuarios_Model_DbTable_Usuario();
-                    $crearBd->crearUsuario($nombreusuario, $contrasena, $identificacion, $nombre, $apellido, $cargo, $perfil, $estado);
+                    $crearBd->crearUsuario($nombreusuario, $contrasena, $identificacion, $nombre, $apellido, $cargo, $perfil, $estado,$modulo);
 
                     $this->_helper->redirector('index');
                 }

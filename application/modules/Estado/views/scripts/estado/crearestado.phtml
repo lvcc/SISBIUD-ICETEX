@@ -12,7 +12,7 @@
                 <form id="insertEstado" method="post" class="form-horizontal"><!--id="loginForm"--> 
                     <div class="form-group">
                         <?php echo $this->crear->getElement('id_estado_credito'); ?>
-                        <label class="col-xs-4 control-label">Nombre estado de crédito</label>
+                        <label class="col-xs-4 control-label">Estado de crédito</label>
                         <div class="col-xs-7">
                             <?php echo $this->crear->getElement('nombre_estado_credito'); ?>
                         </div>
@@ -42,7 +42,7 @@ $('#insertEstado').submit(function(event){
         $('.required').each(function () {
             if(!$(this).val())
                 {
-                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido.</div>'; 
+                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('placeholder')+' es requerido.</div>'; 
                 }            
         });
         if(!!msj)

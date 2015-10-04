@@ -30,7 +30,7 @@
                             <div class="added" style=" clear: both; overflow: hidden;">
                                 <div class="formulariogiro">
                                     <label>Código estudiante:</label>
-                                    <input type="text" name="cod_es_1" class="form-control estudiante_codigo required" id="cod_es_1">
+                                    <input type="text" name="cod_es_1" class="form-control estudiante_codigo required" id="cod_es_1" placeholder="Código estudiante">
                                 </div>
                                 <div class="formulariogiro">
                                     <label>Nombre:</label>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="formulariogiro" >
                                     <label>Valor girado:</label>
-                                    <input type="text" name="val_es_1" class="form-control estudiantes_valor_girado required" id="val_es_1">
+                                    <input type="text" name="val_es_1" class="form-control estudiantes_valor_girado required" id="val_es_1" placeholder="Valor girado">
                                 </div>
                                 <a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a>
                             </div>
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <div align="right">
                             <?php echo $this->add->getElement('insertar'); ?>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </form>
@@ -165,7 +165,7 @@
                $('.required').each(function () {
                 if(!$(this).val())
                     {
-                     msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido</div>'; 
+                     msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('placeholder')+' es requerido</div>'; 
                     }            
                });
                if(!!msj)

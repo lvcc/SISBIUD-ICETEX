@@ -24,7 +24,7 @@ box-shadow: 0 2px 4px 0 #454545;">
         $('.required').each(function () {
             if(!$(this).val())
                 {
-                  msj += "<div style='padding:20px;'><span style='color:#ff0000;'>&#x2605;</span> El campo "+$(this).attr('name')+' es requerido</div>'; 
+                  msj += "<div style='padding:20px;'><span style='color:#ff0000;'>&#x2605;</span> El campo "+$(this).attr('placeholder')+' es requerido</div>'; 
                 }            
         });
         if(!!msj)

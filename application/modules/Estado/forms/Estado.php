@@ -13,7 +13,8 @@ class Estado_Form_Estado extends Zend_Form
         $nombre//->setAttrib('required', 'required')
              ->setRequired(true)
              ->setAttrib('class', 'form-control required')
-             ->addValidator('notEmpty');
+             ->addValidator('notEmpty')
+                ->setAttrib('placeholder', 'Estado de crédito');
         $descripcion = new Zend_Form_Element_Textarea('descripcion_estado_credito');
         $descripcion//->setAttrib('required', 'required')
                     ->addValidator('notEmpty')

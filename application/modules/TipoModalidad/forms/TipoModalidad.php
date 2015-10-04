@@ -15,7 +15,8 @@ class TipoModalidad_Form_TipoModalidad extends Zend_Form
                 ->addFilter('StringTrim')
                 ->addValidator('NotEmpty')
                // ->setAttrib('required', 'required')
-                ->setAttrib('class', 'form-control required');
+                ->setAttrib('class', 'form-control required')
+                ->setAttrib('placeholder', 'Nombre tipo de modalidad');
         $descripcion=new Zend_Form_Element_Textarea('descripcion_tipo_modalidad');
         $descripcion->setAttrib('cols', 50)
                 ->setAttrib('rows', 6)

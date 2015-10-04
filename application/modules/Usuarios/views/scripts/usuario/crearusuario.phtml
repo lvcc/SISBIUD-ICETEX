@@ -10,6 +10,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 <form id="usuario_form" method="post" class="form-horizontal" >
+                    <?php echo $this->agrega->getElement('modulo'); ?>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Nombre de usuario</label>
                         <div class="col-xs-7">
@@ -80,7 +81,7 @@
         $('.required').each(function () {
             if(!$(this).val())
                 {
-                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('name')+' es requerido.</div>'; 
+                  msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo "+$(this).attr('placeholder')+' es requerido.</div>'; 
                 }            
         });
         if(!!msj)
