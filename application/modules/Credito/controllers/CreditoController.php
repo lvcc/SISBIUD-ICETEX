@@ -110,12 +110,88 @@ class Credito_CreditoController extends Zend_Controller_Action
 
     public function editarcreditoAction()
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            $this->view->title="Actualizar Credito - ";
+            $this->view->headTitle($this->view->title);
+            $formEditar=new Credito_Form_Credito();
+            
+            $this->view->form=$formEditar;
+            if($this->getRequest()->isPost())
+            {
+                $formDatos=  $this->getRequest()->getPost();
+                if($formEditar->isValid($formDatos))
+                {
+                    $credito=new Credito_Model_DbTable_Credito();
+                    $credito->actualizar($_POST);
+                    $this->_helper->redirector('index');
+                }
+                else
+                {
+                    $formEditar->populate($formDatos);
+                }
+            }
+            else
+            {
+                $id=$this->_getParam('id',0);
+                if(strlen($id)>0)
+                {
+                    $formActualizar=new Credito_Model_DbTable_Credito();
+                    $actualizar=$formActualizar->get($id);
+                    $formEditar->populate($actualizar);
+                    $beneficiario = new Credito_Model_DbTable_Beneficiarios();
+                    $info=$beneficiario->datos_beneficiario2($actualizar['cod_estudiante']);                   
+                    $this->view->info=$info;
+                    $this->view->actualizar=$actualizar;
+                    $estados_credito = new Credito_Model_DbTable_EstadoDeCredito();
+                    $estados=$estados_credito->get_estados();
+
+                    $modalidades_credito = new Credito_Model_DbTable_ModalidadDeCredito();
+                    $modalidad=$modalidades_credito->get_modalidades();
+
+                    $tipos_modalidades_credito = new Credito_Model_DbTable_TipoModalidadCredito();
+                    $tipo_modalidad=$tipos_modalidades_credito->get_tipos_modalidades();            
+          
+                    $this->view->estados_credito=$estados;
+                    $this->view->modalidades_credito=$modalidad;
+                    $this->view->tipos_modalidades_credito=$tipo_modalidad;
+                    
+                }
+            }
+        }else 
+        {
+            $this->_redirect('Index/index');
+        }
     }
 
-    public function vercreditoAction()
+    public function vercreditoAction($id)
     {
-        // action body
+        if (Zend_Auth::getInstance()->hasIdentity()) 
+        {
+            $this->view->title="Actualizar Credito - ";
+            $this->view->headTitle($this->view->title);
+            $id=$this->_getParam('id',0);
+                if(strlen($id)>0)
+                {
+                    $formActualizar=new Credito_Model_DbTable_Credito();
+                    $actualizar=$formActualizar->get($id);
+                    $beneficiario = new Credito_Model_DbTable_Beneficiarios();
+                    $info=$beneficiario->datos_beneficiario2($actualizar['cod_estudiante']);                   
+                    $this->view->info=$info;
+                    $this->view->actualizar=$actualizar;
+                    $ecredito = new Credito_Model_DbTable_EstadoDeCredito();
+                    $estado_credito = $ecredito->get($actualizar['id_estado_credito']);
+                    $modalidad = new Credito_Model_DbTable_ModalidadDeCredito();
+                    $modalidad_credito = $modalidad->get($actualizar['id_modalidad']);
+                    $tmodalidad = new Credito_Model_DbTable_TipoModalidadCredito();
+                    $tipo_modalidad = $tmodalidad->get($actualizar['id_tipo_modalidad']);
+                    $this->view->estado_credito=$estado_credito;        
+                    $this->view->modalidad_credito=$modalidad_credito;
+                    $this->view->tipo_modalidad=$tipo_modalidad;
+                }
+        } else {
+            $this->_redirect('Index/index');
+        }
     }
 
 

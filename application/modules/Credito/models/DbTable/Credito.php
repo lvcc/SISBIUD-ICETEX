@@ -53,6 +53,24 @@ class Credito_Model_DbTable_Credito extends Zend_Db_Table_Abstract
             
             $this->getAdapter()->query($sql);
     }
+    
+    function get($id)
+    {
+        $id = (int) $id;
+        //$this->fetchRow devuelve fila donde id = $id
+        $row = $this->fetchRow('id = ' . $id);
+        if (!$row)
+        {
+            throw new Exception("Could not find row $id");
+        }
+        return $row->toArray();
+    }
+    
+    function actualizar($datos)
+    {
+        $data=array('periodo_academico'=>$datos['periodo_academico'],'cod_estudiante'=>$datos['cod_estudiante'],'id_estado_credito'=>$datos['id_estado_credito'],'id_modalidad'=>$datos['id_modalidad'],'id_tipo_modalidad'=>$datos['id_tipo_modalidad'],'observacion'=>$datos['observacion']);
+        $this->update($data, 'id = '.(int)$datos['id']);
+    }
 
 }
 

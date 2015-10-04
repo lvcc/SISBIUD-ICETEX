@@ -1,4 +1,181 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Credito</b> and script/action name <b>vercredito</b></p>
-</div>
+<aside >
+    <div class="panel-primary panel">
+        <div class="panel-heading"><h4 class="panel-title">Credito</h4></div>
+    </div>
+    <div style="box-shadow: 1px 0px 5px 1px #cccccc;" class="panel panel-body">
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Periodo Academico:</strong></div>
+            <p align ="justify"><?php echo $this->actualizar['periodo_academico']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Codigo:</strong></div>
+            <p align ="justify"><?php echo $this->info['codigo_ud']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Identificacion:</strong></div>
+            <p align ="justify"><?php echo $this->info['numero_documento']; ?></p>
+        </div>
+        <div class ="well col-md-6">
+            <div class = "muestranom" align = "left" ><strong>Proyecto Curricular:</strong></div>
+            <p align ="justify"><?php echo $this->info['proyecto']; ?></p>
+        </div>
+        <div class ="well col-md-6">
+            <div class = "muestranom" align = "left" ><strong>Nombre:</strong></div>
+            <p align ="justify"><?php echo $this->info['nombres']." ".$this->info['apellidos']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Promedio:</strong></div>
+            <p align ="justify"><?php echo $this->info['promedio']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Matricula:</strong></div>
+            <p align ="justify"><?php echo $this->info['matricula']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Semestre:</strong></div>
+            <p align ="justify"><?php echo $this->info['semestre']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Email Personal:</strong></div>
+            <p align ="justify"><?php echo $this->info['email_personal']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Email Institucional:</strong></div>
+            <p align ="justify"><?php echo $this->info['email_institucional']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Estado Credito:</strong></div>
+            <p align ="justify"><?php echo $this->estado_credito['nombre_estado_credito']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Modalidad de Credito:</strong></div>
+            <p align ="justify"><?php echo $this->modalidad_credito['nombre_modalidad_credito']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Tipo Modalidad de Credito:</strong></div>
+            <p align ="justify"><?php echo $this->tipo_modalidad['nombre_tipo_modalidad']; ?></p>
+        </div>
+        <div class ="well col-md-4">
+            <div class = "muestranom" align = "left" ><strong>Observaciones:</strong></div>
+            <p align ="justify"><?php echo $this->actualizar['observacion']; ?></p>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="form-group">
+        <div style ="clear: both"align="left">
+            <button class="btn btn-default" onclick="location.href = '<?php echo $this->url(array('module' => 'Giros', 'controller' => 'Giro', 'action' => 'index')); ?>'">Regresar</button>
+        </div>
+    </div>
+</aside>
+<script type="text/javascript">
+    $('#sandbox-container').datepicker({
+    });
+    $(document).ready(function() {
+
+        var MaxInputs = 200; //Número Maximo de Campos
+        var cont = $("#cont"); //ID del cont
+        var AddButton = $("#agregarCampo"); //ID del Botón Agregar
+
+        //var x = número de campos existentes en el cont
+        var x = $(".added").length;
+        var FieldCount = x; //para el seguimiento de los campos
+
+        $(AddButton).click(function(e) {
+            if (x <= MaxInputs) //max input box allowed
+            {
+                FieldCount++;
+                //agregar campo
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_' + FieldCount + '" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo required"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '" class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control required"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                x++; //text box increment
+                $('#total_estudiantes').val(FieldCount);
+            }
+            return false;
+        });
+
+        $("body").on("click", ".eliminar", function(e) { //click en eliminar campo
+            if (x > 1) {
+                $(this).parent('div').remove(); //eliminar el campo
+                x--;
+            }
+            return false;
+        });
+    });
+</script>	
+<script>
+    var tabla = (($('form').attr('id')).split("_"))[0];
+    $('input').keyup(function(e) {
+        if ($(this).hasClass('unico'))
+        {
+            var resolucion = $(this).val();
+            var columna = $(this).attr('id');
+            $.post('giro/disponible', {'resolucion': resolucion, 'tabla': tabla, 'columna': columna}, function(data) {
+                $('#' + columna + '_aviso').html(data);
+            });
+        }
+    });
+</script>
+
+<script>
+    var tabla2 = "beneficiarios";
+    $(document).on('keyup', '.estudiante_codigo', function(e) {
+        var pos = (($(this).attr('id')).split("_"))[2];
+        pos = parseInt(pos);
+        var estudiante_cod = $(this).val();
+        console.log(pos);
+        campo = "Nombre";
+        $.post('/SISBIUD-ICETEX/public/Giros/Giro/disponible', {'estudiante_cod': estudiante_cod, 'tabla2': tabla2, 'campo': campo}, function(data2) {
+            $('#nom_es_' + pos).val(data2);
+
+        });
+        campo = "Carrera";
+        $.post('/SISBIUD-ICETEX/public/Giros/Giro/disponible', {'estudiante_cod': estudiante_cod, 'tabla2': tabla2, 'campo': campo}, function(data2) {
+            $('#carr_es_' + pos).val(data2);
+        });
+        campo = "Email";
+        $.post('/SISBIUD-ICETEX/public/Giros/Giro/disponible', {'estudiante_cod': estudiante_cod, 'tabla2': tabla2, 'campo': campo}, function(data2) {
+            $('#ema_es_' + pos).val(data2);
+        });
+    });
+</script>
+
+<script>
+    $('#resolucion_form').submit(function(e) {
+        var msj = "";
+        var codigos = [];
+        $('.estudiante_codigo').each(function(i, val) {
+            codigos.push($(this).val());
+            $(this).removeClass('duplicado');
+        });
+        $.each(codigos, function(i, valor) {
+            var duplicados = 0;
+            $.each(codigos, function(j, valor2) {
+                if (valor === valor2)
+                    duplicados++;
+            });
+            if (duplicados > 1) {
+                msj = "Hay beneficiarios repetidos<br>";
+                $('.estudiante_codigo').each(function(k, val) {
+                    if (k === i)
+                        $(this).addClass('alert-danger');
+                });
+                e.preventDefault();
+            }
+            duplicados = 0;
+            $('.required').each(function() {
+                if (!$(this).val())
+                {
+                    msj += " El campo " + $(this).attr('name') + ' es requerido<br>';
+                }
+            });
+            if (!!msj)
+            {
+                event.preventDefault();
+                $('#popup').html('<span class="button b-close"><span>X</span></span>' + msj);
+                $('#popup').bPopup({easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+                msj = "";
+            }
+
+        });
+    });
+    $('input').prop('readonly', true);
+</script>

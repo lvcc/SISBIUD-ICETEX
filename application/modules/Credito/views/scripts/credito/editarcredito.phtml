@@ -1,4 +1,234 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Credito</b> and script/action name <b>editarcredito</b></p>
-</div>
+<aside>
+    <div class="panel-primary panel">
+        <div class="panel-heading"><h4 class="panel-title">ACTUALIZAR CREDITO</h4></div>
+    </div>
+    <form id = "credito_form" class="panel panel-body" style="box-shadow: 1px 0px 5px 1px #cccccc;" method="post">
+        
+        <input type ="hidden" name="id" value="<?php echo $this->actualizar['id']; ?>">
+        <div class="form-group">
+                <label class="col-xs-3 control-label">Periodo Academico</label>
+                <div class="col-xs-3">
+                    <input type ="text" name ="periodo_academico" id="estudiante_periodo" value="<?php echo $this->actualizar['periodo_academico']; ?>">
+                </div>            
+                <label class="col-xs-2 control-label">Codigo</label>
+                <div class="col-xs-3">
+                     <input type ="text" id="estudiante_cod" value="<?php echo $this->info['codigo_ud']; ?>">
+                </div>
+        </div>
+        <input type ="hidden" name="cod_estudiante" value="<?php echo $this->info['codigo_beneficiario']; ?>">
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Identificacion</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_id" value="<?php echo $this->info['numero_documento']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Proyecto Curricular</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_carrera" value="<?php echo $this->info['proyecto']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Nombre</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_nombre" value="<?php echo $this->info['nombres']." ".$this->info['apellidos']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Promedio</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_promedio" value="<?php echo $this->info['promedio']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Matricula</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_matricula" value="<?php echo $this->info['matricula']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Semestre</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_semestre" value="<?php echo $this->info['semestre']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Correo Personal</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_semestre" value="<?php echo $this->info['email_personal']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                <label class="col-xs-4 control-label">Correo Institucional</label>
+                <div class="col-xs-7">
+                    <input type ="text" id="estudiante_semestre" value="<?php echo $this->info['email_institucional']; ?>">
+                </div>            
+        </div>
+        <div class="form-group">
+                        <label class="col-xs-4 control-label">Estado de credito</label>
+                        <div class="col-xs-7">
+                            <select name ="id_estado_credito"class = "form-control">
+                                 <?php foreach($this->estados_credito as $estado_credito) : ?>
+                                    <?php if($this->actualizar['id_estado_credito']==$estado_credito['id_estado_credito']): ?>
+                                      <option value="<?php echo $estado_credito['id_estado_credito']; ?>"selected><?php echo $estado_credito['nombre_estado_credito']; ?></option>
+                                    <?php else:?>
+                                      <option value="<?php echo $estado_credito['id_estado_credito']; ?>"><?php echo $estado_credito['nombre_estado_credito']; ?></option>
+                                    <?php endif ?>
+                                 <?php endforeach;?>
+                            </select>
+                        </div>
+        </div>
+        <div class="form-group">
+                        <label class="col-xs-4 control-label">Modalidad de credito</label>
+                        <div class="col-xs-7">
+                            <select name = "id_modalidad" class = "form-control">
+                                 <?php foreach($this->modalidades_credito as $modalidad_credito) : ?>
+                                    <?php if($this->actualizar['id_modalidad']==$modalidad_credito['cod_modalidad_credito']): ?>
+                                     <option value="<?php echo $modalidad_credito['cod_modalidad_credito']; ?>"selected><?php echo $modalidad_credito['nombre_modalidad_credito']; ?></option>
+                                    <?php else:?>
+                                      <option value="<?php echo $modalidad_credito['cod_modalidad_credito']; ?>"><?php echo $modalidad_credito['nombre_modalidad_credito']; ?></option>
+                                    <?php endif ?>                                
+                                 <?php endforeach;?>                                
+                            </select>
+                        </div>
+        </div>
+        <div class="form-group">
+                        <label class="col-xs-4 control-label">Tipo Modalidad de credito</label>
+                        <div class="col-xs-7">
+                            <select name = "id_tipo_modalidad" class = "form-control">
+                                 <?php foreach($this->tipos_modalidades_credito as $tipo_modalidad_credito) : ?>
+                                    <?php if($this->actualizar['id_tipo_modalidad']==$tipo_modalidad_credito['cod_tipo_modalidad_credito']): ?>
+                                     <option value="<?php echo $tipo_modalidad_credito['cod_tipo_modalidad_credito']; ?>"selected><?php echo $tipo_modalidad_credito['nombre_tipo_modalidad']; ?></option>
+                                    <?php else:?>
+                                      <option value="<?php echo $tipo_modalidad_credito['cod_tipo_modalidad_credito']; ?>"><?php echo $tipo_modalidad_credito['nombre_tipo_modalidad']; ?></option>
+                                    <?php endif ?>     
+                                 <?php endforeach;?>
+                                
+                            </select>
+                        </div>
+        </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Observaciones</label>
+                        
+                            <textarea name="observacion"><?php echo $this->actualizar['observacion'];?></textarea>                        
+                    </div>
+                            <div class="form-group">
+                        <div class="col-xs-5 col-xs-offset-3">
+                            <?php echo $this->form->getElement('insertar'); ?>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+    </form>
+</aside>
+<script type="text/javascript">
+    $('#sandbox-container').datepicker({
+    });
+    $(document).ready(function() {
+
+        var MaxInputs = 200; //Número Maximo de Campos
+        var cont = $("#cont"); //ID del cont
+        var AddButton = $("#agregarCampo"); //ID del Botón Agregar
+
+        //var x = número de campos existentes en el cont
+        var x = $(".added").length;
+        var FieldCount = x; //para el seguimiento de los campos
+
+        $(AddButton).click(function(e) {
+            if (x <= MaxInputs) //max input box allowed
+            {
+                FieldCount++;
+                //agregar campo
+                $(cont).append('<div class="added" style="clear:both;overflow: hidden;"><div class="formulariogiro" style="clear:both;">\n\<label>Código estudiante:</label>\n\<input type="text" name="cod_es_' + FieldCount + '" id="cod_es_' + FieldCount + '" class="form-control estudiante_codigo required"/></div>\n\<div class="formulariogiro">\n\<label>Nombre:</label>\n\<input type="text" name="nom_es_' + FieldCount + '" id="nom_es_' + FieldCount + '"class="form-control" readonly="true"/></div>\n\<div class="formulariogiro">\n\<label>Carrera:</label>\n\<input type="text" name="carr_es_' + FieldCount + '" id="carr_es_' + FieldCount + '" class="form-control" readonly="true"/></div>\n\<div class="formulariogiro">\n\<label>Email:</label>\n\<input type="text" name="ema_es_' + FieldCount + '" id="ema_es_' + FieldCount + '"  class="form-control" readonly="true"/></div>\n\<div class="formulariogiro">\n\<label>Valor girado:</label>\n\<input type="text" name="val_es_' + FieldCount + '" id="val_es_' + FieldCount + '" class="form-control required"/></div>\n\<a href="#" style="float: left; margin-top:35px;" class="eliminar" >&times;</a></div>');
+                x++; //text box increment
+                $('#total_estudiantes').val(FieldCount);
+            }
+            return false;
+        });
+
+        $("body").on("click", ".eliminar", function(e) { //click en eliminar campo
+            if (x > 1) {
+                $(this).parent('div').remove(); //eliminar el campo
+                x--;
+            }
+            return false;
+        });
+        
+        $("#id_resolucion").prop("readonly", true);
+    });
+</script>	
+<script>
+    var tabla = (($('form').attr('id')).split("_"))[0];
+    $('input').keyup(function(e) {
+        if ($(this).hasClass('unico'))
+        {
+            var resolucion = $(this).val();
+            var columna = $(this).attr('id');
+            $.post('giro/disponible', {'resolucion': resolucion, 'tabla': tabla, 'columna': columna}, function(data) {
+                $('#' + columna + '_aviso').html(data);
+            });
+        }
+    });
+</script>
+
+<script>
+    var tabla2 = "beneficiarios";
+    $(document).on('keyup', '.estudiante_codigo', function(e) {
+        var pos = (($(this).attr('id')).split("_"))[2];
+        pos = parseInt(pos);
+        var estudiante_cod = $(this).val();
+        console.log(pos);
+        campo = "Nombre";
+        $.post('/SISBIUD-ICETEX/public/Giros/Giro/disponible', {'estudiante_cod': estudiante_cod, 'tabla2': tabla2, 'campo': campo}, function(data2) {
+            $('#nom_es_' + pos).val(data2);
+
+        });
+        campo = "Carrera";
+        $.post('/SISBIUD-ICETEX/public/Giros/Giro/disponible', {'estudiante_cod': estudiante_cod, 'tabla2': tabla2, 'campo': campo}, function(data2) {
+            $('#carr_es_' + pos).val(data2);
+        });
+        campo = "Email";
+        $.post('/SISBIUD-ICETEX/public/Giros/Giro/disponible', {'estudiante_cod': estudiante_cod, 'tabla2': tabla2, 'campo': campo}, function(data2) {
+            $('#ema_es_' + pos).val(data2);
+        });
+    });
+</script>
+
+<script>
+    $('#resolucion_form').submit(function(e) {
+        var msj = "";
+        var codigos = [];
+        $('.estudiante_codigo').each(function(i, val) {
+            codigos.push($(this).val());
+            $(this).removeClass('duplicado');
+        });
+        $.each(codigos, function(i, valor) {
+            var duplicados = 0;
+            $.each(codigos, function(j, valor2) {
+                if (valor === valor2)
+                    duplicados++;
+            });
+            if (duplicados > 1) {
+                msj = "Hay beneficiarios repetidos<br>";
+                $('.estudiante_codigo').each(function(k, val) {
+                    if (k === i)
+                        $(this).addClass('alert-danger');
+                });
+                e.preventDefault();
+            }
+            duplicados = 0;
+            $('.required').each(function() {
+                if (!$(this).val())
+                {
+                    msj += "<div style='padding:10px 40px 10px 40px;'><span style='color:#ff0000;'>&#x2605;</span>El campo " + $(this).attr('name') + ' es requerido.</div>';
+                }
+            });
+            if (!!msj)
+            {
+                event.preventDefault();
+                $('#popup').html('<span class="button b-close"><span>X</span></span>' + msj);
+                $('#popup').bPopup({easing: 'easeOutBack', speed: 450, transition: 'slideDown'});
+                msj = "";
+            }
+        });
+    });
+</script>
