@@ -1,7 +1,6 @@
 $(document).ready( function () {
-    if($('.table').length > 0)
     	$('.table').DataTable( {
-    		"oLanguage": {
+                    "oLanguage": {
     			 "sInfoEmpty": "No hay datos",
     			 "sSearch": "Filtrar Resultados",
     			 "sZeroRecords": "No hay datos",
@@ -13,6 +12,13 @@ $(document).ready( function () {
       			 },
       			 "sInfo":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
       			 "sLengthMenu":"Mostrar _MENU_ registros"
-    		}
+                    }, 
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5'
+                    ],
     	});
 } );
